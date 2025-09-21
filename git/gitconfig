@@ -1,3 +1,6 @@
 [alias]
 	tree = log --oneline --graph --decorate --all
 	st = status
+[user]
+	email = adhossner@gmail.com
+	name = Adrian Hossner Manjaro
