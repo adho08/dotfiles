@@ -21,3 +21,6 @@ mkdir -p "$HOME/.config/git"
 ln -sf "$DOTFILES_DIR/git/.gitconfig" "$HOME/.gitconfig"
 
 echo "Dotfiles installed!"
+
+# install oh-my-zsh
+./zsh/install-oh-my-zsh.sh
