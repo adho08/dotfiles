@@ -11,7 +11,7 @@ ln -sf "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 
 # tmux
 mkdir -p "$HOME/.config/tmux"
-ln -sf "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.config/tmux/.tmux.conf"
+ln -sf "$DOTFILES_DIR/tmux" "$HOME/.config/tmux"
 
 # zsh
 ln -sf "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"
