@@ -7,11 +7,10 @@ mkdir -p "$HOME/.config"
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # nvim
-ln -sf "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
+ln -sf "$DOTFILES_DIR/nvim" "$HOME/.config"
 
 # tmux
-mkdir -p "$HOME/.config/tmux"
-ln -sf "$DOTFILES_DIR/tmux" "$HOME/.config/tmux"
+ln -sf "$DOTFILES_DIR/tmux" "$HOME/.config"
 
 # zsh
 ln -sf "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"
