@@ -17,8 +17,7 @@ ln -sf "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.config/tmux/.tmux.conf"
 ln -sf "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"
 
 # git
-mkdir -p "$HOME/.config/git"
-ln -sf "$DOTFILES_DIR/git/.gitconfig" "$HOME/.gitconfig"
+ln -sf "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
 
 echo "Dotfiles installed!"
 
