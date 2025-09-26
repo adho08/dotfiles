@@ -10,7 +10,9 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ln -sf "$DOTFILES_DIR/nvim" "$HOME/.config"
 
 # tmux
-ln -sf "$DOTFILES_DIR/tmux" "$HOME/.config"
+mkdir -p "$HOME/.config/tmux"
+ln -sf "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.config/tmux/tmux.conf"
+ln -sf "$DOTFILES_DIR/tmux/tmux.status-bar.conf" "$HOME/.config/tmux/tmux.status-bar.conf"
 ./tmux/install-tmux.sh
 
 # zsh
