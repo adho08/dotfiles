@@ -18,3 +18,5 @@ vim.keymap.set('n', "<leader>fm", ":Vifm<cr>", { desc = "Open Vifm" })
 
 vim.keymap.set('v', '<C-a>', ':s/\\%V\\d\\+\\%V/\\=submatch(0)+1/g<CR>', { desc = 'Increment numbers in selection' })
 vim.keymap.set('v', '<C-x>', ':s/\\%V\\d\\+\\%V/\\=submatch(0)-1/g<CR>', { desc = 'Decrement numbers in selection' })
+
+vim.keymap.set('n', '<leader>=', 'ggVG=<C-o>', { desc = 'Format the whole file' })
