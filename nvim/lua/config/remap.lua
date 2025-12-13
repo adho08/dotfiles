@@ -1,8 +1,3 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = ","
-vim.opt.shiftwidth = 4
-
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>w", vim.cmd.w)
 vim.keymap.set("n", "<leader>sr", ":%s/", { desc = "Search and replace" })
 vim.keymap.set("v", "<leader>sr", ":s/", { desc = "Search and replace in selection" })
@@ -14,9 +9,9 @@ vim.keymap.set("n", "<C-j>", ":vincmd j<CR>", { desc = "Go down a nvim window" }
 vim.keymap.set("n", "<C-h>", ":vincmd h<CR>", { desc = "Go left a nvim window" })
 vim.keymap.set("n", "<C-l>", ":vincmd l<CR>", { desc = "Go right a nvim window" })
 
-vim.keymap.set('n', "<leader>fm", ":Vifm<cr>", { desc = "Open Vifm" })
+vim.keymap.set("n", "<leader>fm", ":Vifm<cr>", { desc = "Open Vifm" })
 
-vim.keymap.set('v', '<C-a>', ':s/\\%V\\d\\+\\%V/\\=submatch(0)+1/g<CR>', { desc = 'Increment numbers in selection' })
-vim.keymap.set('v', '<C-x>', ':s/\\%V\\d\\+\\%V/\\=submatch(0)-1/g<CR>', { desc = 'Decrement numbers in selection' })
+vim.keymap.set("v", "<C-a>", ":s/\\%V\\d\\+\\%V/\\=submatch(0)+1/g<CR>", { desc = "Increment numbers in selection" })
+vim.keymap.set("v", "<C-x>", ":s/\\%V\\d\\+\\%V/\\=submatch(0)-1/g<CR>", { desc = "Decrement numbers in selection" })
 
-vim.keymap.set('n', '<leader>=', 'ggVG=<C-o>', { desc = 'Format the whole file' })
+vim.keymap.set("n", "<leader>=", vim.lsp.buf.format, { buffer = true, desc = "Format file" })

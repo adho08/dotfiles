@@ -1,8 +1,8 @@
 vim.api.nvim_create_autocmd("FileType", {
-		pattern = {  "latex", "tex", "markdown", "text" },
+	pattern = { "latex", "tex", "markdown", "text" },
 	callback = function()
 		vim.opt_local.spell = true
-		vim.opt_local.spelllang = "en_gb"
+		vim.opt_local.spelllang = { "en_gb", "de" }
 	end,
 })
 
@@ -12,4 +12,3 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.cmd(":CsvViewToggle")
 	end,
 })
-
