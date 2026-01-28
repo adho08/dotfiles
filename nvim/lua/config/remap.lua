@@ -15,3 +15,16 @@ vim.keymap.set("v", "<C-a>", ":s/\\%V\\d\\+\\%V/\\=submatch(0)+1/g<CR>", { desc 
 vim.keymap.set("v", "<C-x>", ":s/\\%V\\d\\+\\%V/\\=submatch(0)-1/g<CR>", { desc = "Decrement numbers in selection" })
 
 vim.keymap.set("n", "<leader>=", vim.lsp.buf.format, { buffer = true, desc = "Format file" })
+
+vim.keymap.set("n", "<leader>lh", ":Lazy home <CR>", { desc = "Open Lazy menu" })
+vim.keymap.set("n", "<leader>li", ":Lazy install <CR>", { desc = "Install plugins in Lazy" })
+vim.keymap.set("n", "<leader>lu", ":Lazy update <CR>", { desc = "Update Lazy" })
+vim.keymap.set("n", "<leader>ls", ":Lazy sync <CR>", { desc = "Sync Lazy" })
+vim.keymap.set("n", "<leader>lx", ":Lazy clean <CR>", { desc = "Clean plugins in Lazy" })
+vim.keymap.set("n", "<leader>lc", ":Lazy check <CR>", { desc = "Check plugins in Lazy" })
+vim.keymap.set("n", "<leader>ls", ":Lazy sync <CR>", { desc = "Sync Lazy" })
+vim.keymap.set("n", "<leader>ll", ":Lazy log <CR>", { desc = "Log Lazy" })
+vim.keymap.set("n", "<leader>lr", ":Lazy restore <CR>", { desc = "Restore plugins in Lazy" })
+vim.keymap.set("n", "<leader>lp", ":Lazy profile <CR>", { desc = "Select Profile in Lazy" })
+vim.keymap.set("n", "<leader>ld", ":Lazy debug <CR>", { desc = "Debug Lazy" })
+vim.keymap.set("n", "<leader>l?", ":Lazy help <CR>", { desc = "Select Help in Lazy" })

@@ -34,7 +34,7 @@ return {
 					-- Lua
 					null_ls.builtins.formatting.stylua,
 
-					-- yaml
+					-- yaml, bash
 					null_ls.builtins.formatting.yamlfmt,
 
 					-- Python
@@ -43,11 +43,13 @@ return {
 					-- null_ls.builtins.diagnostics.pylint,
 
 					-- JavaScript/TypeScript
-					-- null_ls.builtins.formatting.prettier,
 					-- null_ls.builtins.diagnostics.eslint_d,
 
 					-- C/C++
 					null_ls.builtins.formatting.clang_format,
+
+					-- TypeScript/JavaScript, css, scss, ...
+					null_ls.builtins.formatting.prettier,
 
 					-- Shell
 					-- null_ls.builtins.formatting.shfmt,
@@ -85,7 +87,6 @@ return {
 					"isort",
 					"pylint",
 					"prettier",
-					"eslint_d",
 					"clang_format",
 					"shfmt",
 					"shellcheck",

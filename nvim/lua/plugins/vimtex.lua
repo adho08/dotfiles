@@ -8,7 +8,7 @@ return {
 			vim.g.vimtex_view_method = "general"
 			vim.g.vimtex_view_general_viewer = "/home/adhos/.local/bin/openpdf.sh"
 		elseif IN_LINUX then
-			vim.g.vimtex_view_method = "zathura"
+			vim.g.vimtex_view_method = "zathura_simple"
 		end
 		vim.g.vimtex_quickfix_enabled = 0
 

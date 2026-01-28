@@ -1,0 +1,26 @@
+// -*- mode: jsonc -*-
+// Load modules
+{
+  "layer": "top",
+  "position": "top",
+  "height": 54,
+  "exclusive": true,
+  "style": "~/.config/waybar/rounded-hypr.css",
+  "include": ["~/.config/waybar/modules.json"],
+  "modules-left": [
+    "hyprland/workspaces",
+    "mpris#prev",
+    "custom/playpause",
+    "custom/next",
+    "mpris",
+  ],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "bluetooth",
+    "pulseaudio",
+    "network",
+    "backlight",
+    "battery",
+    "custom/power",
+  ],
+}

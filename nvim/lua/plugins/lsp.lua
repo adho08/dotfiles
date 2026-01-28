@@ -32,7 +32,7 @@ return {
 		},
 		config = function()
 			-- Enable all Mason-installed servers
-			local servers = { "lua_ls", "vtsls", "pyright", "texlab", "bashls", "clangd", "cssls" }
+			local servers = { "hyprls", "lua_ls", "vtsls", "pyright", "texlab", "bashls", "clangd", "cssls" }
 
 			for _, server in ipairs(servers) do
 				vim.lsp.enable(server)
