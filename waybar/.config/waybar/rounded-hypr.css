@@ -1,0 +1,168 @@
+@import "colors.css";
+
+* {
+	font-family: JetBrains Mono Nerd Font;
+	font-size: 15px;
+	/* background-color: alpha(@background, 0.6); */
+}
+
+window#waybar {
+	background-color: rgba(25, 30, 35, 0.6);
+	background-color: transparent;
+}
+
+window#waybar>box {
+	border-radius: 12px;
+	background-color: rgba(00, 00, 00, 0.5);
+	margin: 4px 8px 8px 8px;
+	/* box-shadow: 4px 4px 2px 1px #101010; */
+}
+
+/* Add spacing between module groups */
+.modules-left,
+.modules-center,
+.modules-right {
+	margin: 5px;
+	border-radius: 12px;
+	background-color: transparent;
+	/* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); */
+}
+
+/* Default for all modules */
+.module {
+	background-color: @background;
+	color: @foreground;
+	margin: 5px;
+	padding: 5px 15px;
+	border: none;
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease,
+		box-shadow 0.2s ease,
+		margin 0.2s ease;
+}
+
+.module:hover {
+	background-color: @color8;
+	color: @color0;
+}
+
+/* Round the left side of the first module in each group */
+.modules-left>widget:first-child>* {
+	border-radius: 10px 0 0 10px;
+}
+
+/* Round the right side of the last module in each group */
+.modules-left>widget:last-child>* {
+	border-radius: 0 10px 10px 0;
+}
+
+.modules-center>widget:first-child>* {
+	border-radius: 10px 0 0 10px;
+}
+
+.modules-center>widget:last-child>* {
+	border-radius: 0 10px 10px 0;
+}
+
+.modules-right>widget:first-child>* {
+	border-radius: 10px 0 0 10px;
+}
+
+.modules-right>widget:last-child>* {
+	border-radius: 0 10px 10px 0;
+}
+
+/* If a group has only one module, round all corners */
+.modules-left>widget:only-child>*,
+.modules-center>widget:only-child>*,
+.modules-right>widget:only-child>* {
+	border-radius: 10px;
+}
+
+/* Workspaces styling */
+#workspaces {
+	margin: 0;
+	padding: 0;
+	background-color: @background;
+	border-radius: 10px;
+}
+
+#workspaces button {
+	padding: 0 10px;
+	margin: 2px;
+	background-color: @background;
+	color: @foreground;
+	border-radius: 10px;
+}
+
+#workspaces button.active {
+	background-color: @color13;
+	color: @foreground;
+}
+
+#workspaces button.focused {
+	background-color: @color13;
+	color: @foreground;
+}
+
+#workspaces button.empty {
+	background: @color13;
+	color: @color0;
+}
+
+#workspaces button.urgent {
+	background: @color9;
+	color: @foreground;
+}
+
+#workspaces button:hover {
+	background-color: inherit;
+	color: @foreground;
+	/* border: none; */
+	padding: 0 10px;
+}
+
+animation .module,
+#workspaces button {
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease;
+}
+
+/* Battery critical state */
+#battery.critical:not(.charging) {
+	background-color: @color1;
+	color: @color15;
+}
+
+#clock {
+	border-radius: 10px;
+}
+
+#mpris.prev {
+	border-radius: 10px 0 0 10px;
+	padding: 0 10px;
+	margin: 0;
+	margin-left: 5px;
+}
+
+#mpris.playpause,
+#mpris.next {
+	padding: 0 10px;
+	margin: 0;
+	border-radius: 0 0 0 0;
+}
+
+#mpris {
+	border-radius: 0 10px 10px 0;
+	padding: 0 10px;
+	margin: 0;
+}
+
+#mpris.next.stopped {
+	opacity: 0;
+	min-width: 0;
+	padding: 0;
+	margin: 0;
+}

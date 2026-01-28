@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/blue_mountains.jpg",
+    "special": {
+        "background": "#010508",
+        "foreground": "#85D4EE",
+        "cursor": "#85D4EE"
+    },
+    "colors": {
+        "color0": "#01070A",
+        "color1": "#262C27",
+        "color2": "#494036",
+        "color3": "#295A6C",
+        "color4": "#26728D",
+        "color5": "#8E8070",
+        "color6": "#3E8FA7",
+        "color7": "#74C3DC",
+        "color8": "#32859D",
+        "color9": "#262C27",
+        "color10": "#494036",
+        "color11": "#295A6C",
+        "color12": "#26728D",
+        "color13": "#8E8070",
+        "color14": "#3E8FA7",
+        "color15": "#B1D8E5"
+    }
+}

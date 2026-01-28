@@ -1,0 +1,19 @@
+// -*- mode: jsonc -*-
+// Load modules
+{
+  "layer": "top",
+  "position": "top",
+  "height": 40,
+  "style": "~/.config/waybar/rounded-sway.css",
+  "include": ["~/.config/waybar/modules.json"],
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "bluetooth",
+    "pulseaudio",
+    "network",
+    "backlight",
+    "battery",
+    "custom/power",
+  ],
+}

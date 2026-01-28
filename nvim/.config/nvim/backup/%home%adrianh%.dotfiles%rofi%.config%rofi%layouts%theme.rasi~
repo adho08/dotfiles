@@ -1,0 +1,9 @@
+@import "colors.rasi"
+
+* {
+    font: "JetBrains Mono Nerd Font Mono 12";
+}
+
+* {
+    border-radius: 20;
+}

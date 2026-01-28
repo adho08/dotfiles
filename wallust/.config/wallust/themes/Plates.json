@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/Plates.jpg",
+    "special": {
+        "background": "#090302",
+        "foreground": "#91DBF1",
+        "cursor": "#91DBF1"
+    },
+    "colors": {
+        "color0": "#0C0403",
+        "color1": "#5A2A28",
+        "color2": "#3D4E43",
+        "color3": "#976D5E",
+        "color4": "#66768E",
+        "color5": "#C04937",
+        "color6": "#549DB2",
+        "color7": "#82CBE1",
+        "color8": "#408A9E",
+        "color9": "#5A2A28",
+        "color10": "#3D4E43",
+        "color11": "#976D5E",
+        "color12": "#66768E",
+        "color13": "#C04937",
+        "color14": "#549DB2",
+        "color15": "#B8DDE8"
+    }
+}

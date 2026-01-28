@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/heaven.jpg",
+    "special": {
+        "background": "#050309",
+        "foreground": "#B5C3FF",
+        "cursor": "#B5C3FF"
+    },
+    "colors": {
+        "color0": "#07050B",
+        "color1": "#331860",
+        "color2": "#673D64",
+        "color3": "#6348A3",
+        "color4": "#9B5DA5",
+        "color5": "#AD5A6D",
+        "color6": "#7885F3",
+        "color7": "#A6B3FF",
+        "color8": "#6672DF",
+        "color9": "#331860",
+        "color10": "#673D64",
+        "color11": "#6348A3",
+        "color12": "#9B5DA5",
+        "color13": "#AD5A6D",
+        "color14": "#7885F3",
+        "color15": "#CAD1F7"
+    }
+}

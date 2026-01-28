@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/norway-black-and-white-landscape-trees.jpg",
+    "special": {
+        "background": "#030505",
+        "foreground": "#C9C9C9",
+        "cursor": "#C9C9C9"
+    },
+    "colors": {
+        "color0": "#050606",
+        "color1": "#373737",
+        "color2": "#484848",
+        "color3": "#585858",
+        "color4": "#686868",
+        "color5": "#777777",
+        "color6": "#888888",
+        "color7": "#B9B9B9",
+        "color8": "#7B7B7B",
+        "color9": "#373737",
+        "color10": "#484848",
+        "color11": "#585858",
+        "color12": "#686868",
+        "color13": "#777777",
+        "color14": "#888888",
+        "color15": "#D3D3D3"
+    }
+}

@@ -25,7 +25,7 @@ antigen bundle git
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
-antigen bundle zsh-users/zsh-fzf-history-search
+antigen bundle joshskidmore/zsh-fzf-history-search
 antigen bundle Aloxaf/fzf-tab
 
 antigen theme subnixr/minimal

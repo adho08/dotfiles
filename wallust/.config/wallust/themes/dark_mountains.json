@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/dark_mountains.jpg",
+    "special": {
+        "background": "#02040A",
+        "foreground": "#BBC2CF",
+        "cursor": "#BBC2CF"
+    },
+    "colors": {
+        "color0": "#03060C",
+        "color1": "#262C38",
+        "color2": "#333945",
+        "color3": "#3C424E",
+        "color4": "#464C58",
+        "color5": "#5C626E",
+        "color6": "#737985",
+        "color7": "#A9AFBD",
+        "color8": "#6F7581",
+        "color9": "#262C38",
+        "color10": "#333945",
+        "color11": "#3C424E",
+        "color12": "#464C58",
+        "color13": "#5C626E",
+        "color14": "#737985",
+        "color15": "#CCCFD5"
+    }
+}

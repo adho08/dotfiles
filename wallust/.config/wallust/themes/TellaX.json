@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/TellaX.jpg",
+    "special": {
+        "background": "#050403",
+        "foreground": "#E6B69A",
+        "cursor": "#E6B69A"
+    },
+    "colors": {
+        "color0": "#070604",
+        "color1": "#4B463F",
+        "color2": "#4F3424",
+        "color3": "#5F5E58",
+        "color4": "#8E5533",
+        "color5": "#708283",
+        "color6": "#976F56",
+        "color7": "#D2A489",
+        "color8": "#936B53",
+        "color9": "#4B463F",
+        "color10": "#4F3424",
+        "color11": "#5F5E58",
+        "color12": "#8E5533",
+        "color13": "#708283",
+        "color14": "#976F56",
+        "color15": "#E0C9BB"
+    }
+}

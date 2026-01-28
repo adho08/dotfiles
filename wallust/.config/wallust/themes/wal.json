@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/wal.jpg",
+    "special": {
+        "background": "#02040A",
+        "foreground": "#BEC7DB",
+        "cursor": "#BEC7DB"
+    },
+    "colors": {
+        "color0": "#03060C",
+        "color1": "#272B35",
+        "color2": "#353945",
+        "color3": "#3D424F",
+        "color4": "#565D6D",
+        "color5": "#70778A",
+        "color6": "#7B8496",
+        "color7": "#ADB6CA",
+        "color8": "#717A8B",
+        "color9": "#272B35",
+        "color10": "#353945",
+        "color11": "#3D424F",
+        "color12": "#565D6D",
+        "color13": "#70778A",
+        "color14": "#7B8496",
+        "color15": "#CDD2DC"
+    }
+}

@@ -1,0 +1,7 @@
+include "./colors"
+
+set selection-clipboard clipboard
+
+# neovim support
+set synctex true
+set synctex-editor-command "nvim --server %socket --remote +%line %file"

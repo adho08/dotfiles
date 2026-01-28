@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/AphexTwinSyro.jpg",
+    "special": {
+        "background": "#040501",
+        "foreground": "#DEF750",
+        "cursor": "#DEF750"
+    },
+    "colors": {
+        "color0": "#050601",
+        "color1": "#3F4023",
+        "color2": "#4D5024",
+        "color3": "#5D6325",
+        "color4": "#7A8528",
+        "color5": "#98A82B",
+        "color6": "#BFD630",
+        "color7": "#D7EF48",
+        "color8": "#8A9E00",
+        "color9": "#3F4023",
+        "color10": "#4D5024",
+        "color11": "#5D6325",
+        "color12": "#7A8528",
+        "color13": "#98A82B",
+        "color14": "#BFD630",
+        "color15": "#E2EE9B"
+    }
+}

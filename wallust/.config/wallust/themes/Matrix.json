@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/Matrix.jpg",
+    "special": {
+        "background": "#020602",
+        "foreground": "#83E588",
+        "cursor": "#83E588"
+    },
+    "colors": {
+        "color0": "#030703",
+        "color1": "#0F2C13",
+        "color2": "#174A1B",
+        "color3": "#1A661D",
+        "color4": "#387941",
+        "color5": "#278F2F",
+        "color6": "#44A34F",
+        "color7": "#74D57A",
+        "color8": "#339341",
+        "color9": "#0F2C13",
+        "color10": "#174A1B",
+        "color11": "#1A661D",
+        "color12": "#387941",
+        "color13": "#278F2F",
+        "color14": "#44A34F",
+        "color15": "#B1E1B4"
+    }
+}
