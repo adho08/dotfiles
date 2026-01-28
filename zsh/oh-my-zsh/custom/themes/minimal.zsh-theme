@@ -1,1 +1,0 @@
-/home/adrianh/.oh-my-zsh/custom/themes/minimal/minmal.zsh

@@ -6,7 +6,7 @@ export AUTHOR="Adrian Hossner"
 export ZSH_CUSTOM="$HOME/.config/zsh/custom"
 
 # ---------- scripts ---------- 
-source "$HOME/.config/zsh/scripts/completions.sh"
+source "$HOME/.dotfiles/zsh/scripts/completions.sh"
 
 # ---------- fzf ---------- 
 # Set up fzf key bindings and fuzzy completion
@@ -17,6 +17,7 @@ export FZF_CTRL_R_OPTS="
 "
 
 # ---------- aliases ---------- 
+
 alias c='xclip -sel clip'
 alias clr=clear
 alias list=ls
@@ -24,23 +25,6 @@ alias inv='nvim $(fzf --tmux -m --preview="(bat --color=always {})")'
 alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
 alias icd='cd $(fzf --tmux -m --preview="(bat --color=always {})")'
 # alias conf='cd ~/.config'
-#
-
-# ---------- antigen ---------- 
-source ~/.config/zsh/scripts/antigen.zsh
-antigen use oh-my-zsh
-
-antigen bundle git
-
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-history-substring-search
-antigen bundle zsh-users/zsh-fzf-history-search
-antigen bundle Aloxaf/fzf-tab
-
-antigen theme subnixr/minimal
-
-antigen apply
 
 # ---------- oh-my-zsh ---------- 
 export ZSH="$HOME/.oh-my-zsh"
@@ -57,7 +41,7 @@ plugins=(
 )
 
 # source $ZSH/themes/minimal.zsh-theme
-# source $ZSH/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 
 # ---------- eza ---------- 
 alias ls='eza --icons'
