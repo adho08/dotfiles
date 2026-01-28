@@ -3,5 +3,5 @@
 	name = Adrian Hossner Manjaro
 
 [alias]
-	tree = log --oneline --graph --decorate --all
-	st = status
+tree = log --oneline --graph --decorate --all
+st = status

@@ -3,28 +3,18 @@ export PATH="$HOME/.local/bin:$PATH:$HOME/.cargo/bin"
 export EDITOR='nvim'
 export BROWSER='org.mozilla.firefox.desktop'
 export AUTHOR="Adrian Hossner"
-export ZSH_CUSTOM="$HOME/.config/zsh/custom"
+export ZSH_CUSTOM="$HOME/.config/zsh/custom/"
+export ZSH_SCRIPTS="$HOME/.config/zsh/scripts"
 
-# ---------- scripts ---------- 
-source "$HOME/.config/zsh/scripts/completions.sh"
-
-# ---------- fzf ---------- 
-# Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
-export FZF_CTRL_R_OPTS="
-  --bind=tab:down
-  --bind=btab:up
-"
 
 # ---------- aliases ---------- 
-alias c='xclip -sel clip'
+alias c='wl-copy'
 alias clr=clear
 alias list=ls
 alias inv='nvim $(fzf --tmux -m --preview="(bat --color=always {})")'
 alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
 alias icd='cd $(fzf --tmux -m --preview="(bat --color=always {})")'
-# alias conf='cd ~/.config'
-#
+alias dot='cd ~/.dotfiles'
 
 # ---------- antigen ---------- 
 source ~/.config/zsh/scripts/antigen.zsh
@@ -35,29 +25,15 @@ antigen bundle git
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
-antigen bundle zsh-users/zsh-fzf-history-search
+antigen bundle joshskidmore/zsh-fzf-history-search
 antigen bundle Aloxaf/fzf-tab
 
 antigen theme subnixr/minimal
 
 antigen apply
 
-# ---------- oh-my-zsh ---------- 
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="minimal"
-plugins=(
-    git 
-    eza
-    zsh-completions
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    zsh-history-substring-search
-    zsh-fzf-history-search
-    fzf-tab
-)
-
-# source $ZSH/themes/minimal.zsh-theme
-# source $ZSH/oh-my-zsh.sh
+# ---------- theme ---------- 
+source "$ZSH_SCRIPTS"/minimal.zsh-theme
 
 # ---------- eza ---------- 
 alias ls='eza --icons'
@@ -66,7 +42,16 @@ alias la='eza -la --icons'
 alias tree='eza --icons -T'
 
 # ---------- completion ---------- 
+source "$ZSH_SCRIPTS"/completions.sh
 bindkey '^Y' forward-word
+
+# ---------- fzf ---------- 
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+export FZF_CTRL_R_OPTS="
+  --bind=tab:down
+  --bind=btab:up
+"
 
 # ---------- additional stuff ---------- 
 conf ()
@@ -89,5 +74,7 @@ cwpdf ()
 # ---------- zoxide ---------- 
 eval "$(zoxide init zsh)"
 
+# ---------- spicetify ---------- 
+# export PATH=$PATH:/home/adrianh/.spicetify
 
-export PATH=$PATH:/home/adrianh/.spicetify
+# ---------- scripts ---------- 
