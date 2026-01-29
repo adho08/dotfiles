@@ -6,7 +6,6 @@ export AUTHOR="Adrian Hossner"
 export ZSH_CUSTOM="$HOME/.config/zsh/custom/"
 export ZSH_SCRIPTS="$HOME/.config/zsh/scripts"
 
-
 # ---------- aliases ---------- 
 alias c='wl-copy'
 alias clr=clear
@@ -54,10 +53,6 @@ export FZF_CTRL_R_OPTS="
 "
 
 # ---------- additional stuff ---------- 
-conf ()
-{
-    cd ~/.config/$1
-}
 
 # count words in a pdf
 cwpdf ()

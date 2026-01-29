@@ -47,6 +47,20 @@ install_package() {
     fi
 }
 
+install_repo() {
+    local name=$1
+    local url=$2
+    local destination=$3
+    
+    if [ ! -d "$destination" ]; then
+        echo "Installing $name to $destination..."
+        git clone "$url" "$destination"
+        echo "$name installed"
+    else
+        echo "$name already installed"
+    fi
+}
+
 # --------------- Main Installation ---------------
 detect_package_manager
 
@@ -68,6 +82,7 @@ install_package waybar
 install_package wallust 
 install_package rofi
 install_package zathuar
+install_package hypr
 
 # --------------- Stow packages ---------------
 echo "Stowing dotfiles..."
@@ -88,26 +103,12 @@ echo "Setting up nvim..."
 echo "Setting up tmux..."
 
 # Install TPM
-if [ ! -d ~/.config/tmux/plugins/tpm ]; then
-  git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
-    echo "TPM installed"
-fi
+install_repo "TPM" "https://github.com/tmux-plugins/tpm" "$HOME/.config/tmux/plugins/tpm"
+echo "TPM installed"
 
 # --------------- zsh ---------------
 echo "Setting up zsh..."
 
-# Install antigen
-mkdir -p "$HOME/.config/zsh/scripts"
-if [ ! -f "$HOME/.config/zsh/scripts/antigen.zsh" ]; then
-  curl -L git.io/antigen > "$HOME/.config/zsh/scripts/antigen.zsh"
-  echo "Antigen installed"
-fi
-# Install minimal theme (for antigen to find)
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/minimal" ]; then
-  git clone https://github.com/subnixr/minimal \
-    "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/minimal"
-  echo "Minimal theme installed"
-fi
 # Set zsh as default shell
 if [ "$SHELL" != "$(which zsh)" ]; then
     echo "Setting zsh as default shell..."
@@ -125,6 +126,12 @@ echo "Setting up wallust..."
 
 # --------------- rofi ---------------
 echo "Setting up rofi..."
+
+install_package "brightnessctl"
+install_package "gammastep"
+install_package "acpi"
+install_package "powerprofilesctl" # Does not exist
+
 # TODO: install all requirements for rofi bin if not already installed
 
 # --------------- zathura ---------------

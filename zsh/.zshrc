@@ -6,7 +6,6 @@ export AUTHOR="Adrian Hossner"
 export ZSH_CUSTOM="$HOME/.config/zsh/custom/"
 export ZSH_SCRIPTS="$HOME/.config/zsh/scripts"
 
-
 # ---------- aliases ---------- 
 alias c='wl-copy'
 alias clr=clear
@@ -14,7 +13,6 @@ alias list=ls
 alias inv='nvim $(fzf --tmux -m --preview="(bat --color=always {})")'
 alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
 alias icd='cd $(fzf --tmux -m --preview="(bat --color=always {})")'
-alias dot='cd ~/.dotfiles'
 
 # ---------- antigen ---------- 
 source ~/.config/zsh/scripts/antigen.zsh
@@ -54,10 +52,6 @@ export FZF_CTRL_R_OPTS="
 "
 
 # ---------- additional stuff ---------- 
-conf ()
-{
-    cd ~/.config/$1
-}
 
 # count words in a pdf
 cwpdf ()
