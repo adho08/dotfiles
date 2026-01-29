@@ -5,6 +5,8 @@ set -e  # Exit on error
 # Specify dotfiles directory
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+DISTRO=$(grep '^ID=' /etc/os-release | cut -d= -f2 | tr -d '"')
+
 # --------------- Detect OS & Package Manager ---------------
 detect_package_manager() {
     if command -v apt &> /dev/null; then
@@ -81,8 +83,9 @@ install_package tmux
 install_package waybar
 install_package wallust 
 install_package rofi
-install_package zathuar
-install_package hypr
+install_package zathura
+install_package hyprland
+install_package sway
 
 # --------------- Stow packages ---------------
 echo "Stowing dotfiles..."
@@ -104,7 +107,6 @@ echo "Setting up tmux..."
 
 # Install TPM
 install_repo "TPM" "https://github.com/tmux-plugins/tpm" "$HOME/.config/tmux/plugins/tpm"
-echo "TPM installed"
 
 # --------------- zsh ---------------
 echo "Setting up zsh..."
@@ -127,23 +129,61 @@ echo "Setting up wallust..."
 # --------------- rofi ---------------
 echo "Setting up rofi..."
 
-install_package "brightnessctl"
-install_package "gammastep"
-install_package "acpi"
-install_package "powerprofilesctl" # Does not exist
+install_package brightnessctl
+install_package acpi
+install_package power-profiles-daemon
+install_package networkmanager
+install_package iproute2
+install_package gawk
+install_package mpc
+install_package alsa-utils
+install_package libnotify
+install_package hyprland
+install_package hyprlock
+install_package hyprsunset
+install_package sway
+install_package swaybg
+install_package gammastep
 
-# TODO: install all requirements for rofi bin if not already installed
+case $PKG_MANAGER in
+    pacman)
+        install_package bluez-utils
+        ;;
+    apt|dnf|zypper)
+        install_package bluez
+        ;;
+    brew)
+        install_package bluez
+        ;;
+esac
+
 
 # --------------- zathura ---------------
 echo "Setting up zathura..."
 
 # --------------- hypr ---------------
 echo "Setting up hypr..."
-# TODO: install all requirements for hyprland conf if not already installed
+
+install_package alacritty 
+install_package dolphin
+install_package eww
+install_package keyd
+install_package grimblast
+install_package wireplumber
+install_package playerctl 
+
+# --------------- keyd ---------------
+echo "Setting up keyd..."
+
+sudo mkdir -p /etc/keyd
+sudo cp "$DOTFILES_DIR"/keyd/etc/keyd/default.conf /etc/keyd/
+sudo systemctl enable --now keyd
 
 echo ""
 echo "Dotfiles installed!"
 echo ""
 echo "Next steps:"
-echo "1. Restart your terminal or run: exec zsh"
-echo "2. In tmux, press <prefix> + I to install plugins"
+echo "1. Install JetBrains Nerd Font Mono"
+echo "2. Restart your terminal or run: exec zsh"
+echo "3. In tmux, press <prefix> + I to install plugins"
+echo "4. Press Windows key + m and choose a theme to generate colors for the programs"
