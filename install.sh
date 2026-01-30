@@ -2,6 +2,27 @@
 
 set -e  # Exit on error
 
+# Check for --copy flag
+# Parse flags
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --copy)
+            SYMLINK=false
+            shift
+            ;;
+        --help|-h)
+            echo "Usage: ./install.sh [OPTIONS]"
+            echo "  --copy    Copy files instead of symlinking"
+            echo "  --help    Show this help"
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1"
+            exit 1
+            ;;
+    esac
+done
+
 # Specify dotfiles directory
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -88,16 +109,30 @@ install_package hyprland
 install_package sway
 
 # --------------- Stow packages ---------------
-echo "Stowing dotfiles..."
-stow nvim
-stow tmux
-stow git
-stow zsh
-stow waybar 
-stow wallust
-stow rofi
-stow zathura
-stow hypr
+
+if [ "$SYMLINK" = false ]; then
+    echo "Copying dotfiles..."
+    cp -r nvim/.config/nvim ~/.config/
+    cp -r tmux/.config/tmux ~/.config/
+    cp -r git/.config/git ~/.config/
+    cp -r zsh/.config/zsh ~/.config/
+    cp -r waybar /.config/waybar ~/.config/
+    cp -r wallust/.config/wallust ~/.config/
+    cp -r rofi/.config/rofi ~/.config/
+    cp -r zathura/.config/zathura ~/.config/
+    cp -r hypr/.config/hypr ~/.config/
+else
+    echo "Stowing dotfiles..."
+    stow nvim
+    stow tmux
+    stow git
+    stow zsh
+    stow waybar 
+    stow wallust
+    stow rofi
+    stow zathura
+    stow hypr
+fi
 
 # --------------- nvim ---------------
 echo "Setting up nvim..."
@@ -166,7 +201,6 @@ echo "Setting up hypr..."
 
 install_package alacritty 
 install_package dolphin
-install_package eww
 install_package keyd
 install_package grimblast
 install_package wireplumber
@@ -179,6 +213,7 @@ sudo mkdir -p /etc/keyd
 sudo cp "$DOTFILES_DIR"/keyd/etc/keyd/default.conf /etc/keyd/
 sudo systemctl enable --now keyd
 
+# --------------- Additional info ---------------
 echo ""
 echo "Dotfiles installed!"
 echo ""
