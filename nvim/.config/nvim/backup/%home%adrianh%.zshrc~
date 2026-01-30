@@ -13,7 +13,6 @@ alias list=ls
 alias inv='nvim $(fzf --tmux -m --preview="(bat --color=always {})")'
 alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
 alias icd='cd $(fzf --tmux -m --preview="(bat --color=always {})")'
-alias dot='cd ~/.dotfiles'
 
 # ---------- antigen ---------- 
 source ~/.config/zsh/scripts/antigen.zsh
