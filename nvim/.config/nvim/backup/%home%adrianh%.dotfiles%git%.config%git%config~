@@ -1,7 +1,0 @@
-[user]
-	email = adhossner@gmail.com
-	name = Adrian Hossner Manjaro
-
-[alias]
-tree = log --oneline --graph --decorate --all
-st = status
