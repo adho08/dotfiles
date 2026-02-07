@@ -49,10 +49,8 @@ palette = "saliencedark"
 # template: A RELATIVE path that points to `~/.config/wallust/template` (depends on platform)
 # target: ABSOLUTE path in which to place a file with generated templated values.
 # ¡ If either one is a directory, then both SHOULD be one. !
-zathura = { template = 'zathura.mustache', target = '~/.config/zathura/colors' }
 waybar = { template = "waybar.mustache", dst = "~/.config/waybar/colors.css" }
 rofi = { template = "rofi.mustache", dst = "~/.config/rofi/custom/layouts/colors.rasi" }
-vimiv = { template = "vimiv.mustache", dst = "~/.config/vimiv/vimivrc" }
 swaylock = { template = "swaylock.mustache", dst = "~/.config/swaylock/colors.sh" }
 pywal_json = { template = 'colors.json.mustache', target = '~/.cache/wal/colors.json' }
 tmux = { template = 'tmux.mustache', target = '~/.config/tmux/colors.conf' }
@@ -61,6 +59,8 @@ hyprland = { template = 'hyprland.mustache', target = '~/.config/hypr/colors.con
 eww = { template = 'colors.css.mustache', target = '~/.config/eww/colors.css' }
 spicetify = { template = 'spicetify.mustache', target = '~/.config/spicetify/Themes/Wallust/color.ini' }
 fzf = { template = 'fzf.mustache', target = '~/.config/fzf/colors.sh' }
+# zathura = { template = 'zathura.mustache', target = '~/.config/zathura/colors' }
+# vimiv = { template = "vimiv.mustache", dst = "~/.config/vimiv/vimivrc" }
 
 [hooks]
 # Run commands when wallust is invoked. Useful to avoid scripting.

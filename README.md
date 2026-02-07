@@ -1,10 +1,8 @@
-Goated System Configuration
-
 # Dotfiles Installation Guide
 
-My personal dotfiles for a customised Linux environment featuring Hyprland, Neovim, Tmux, Zsh, and more.
+My personal goated dotfiles for a customised Linux environment featuring Hyprland, Neovim, Tmux, Zsh, and more.
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Prerequisites](#prerequisites)
 - [Screenshots](#screenshots)
@@ -22,6 +20,10 @@ This system has been developed in Manjaro Linux. So the dotfiles have not been t
 - **Fedora** (and derivatives)
 - **openSUSE**
 - **macOS** (via Homebrew but program availability very limited)
+
+## Screenshots
+
+### Desktop
 
 ## Quick Start
 

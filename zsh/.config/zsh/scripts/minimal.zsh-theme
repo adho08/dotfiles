@@ -1,7 +1,7 @@
 MNML_USER_CHAR='Σ'
 
 # Components on the left prompt
-MNML_PROMPT=(mnml_ssh mnml_pyenv mnml_cwd mnml_status mnml_keymap)
+MNML_PROMPT=(mnml_ssh mnml_pyenv 'mnml_cwd 0 0' mnml_status mnml_keymap)
 
 # Components on the right prompt
 MNML_RPROMPT=(mnml_git)

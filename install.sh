@@ -89,6 +89,49 @@ detect_package_manager() {
 }
 
 # --------------- Install package function ---------------
+install_aur() {
+	local package=$1
+
+	# Detect AUR helper
+	if command -v yay &>/dev/null; then
+		AUR_HELPER="yay"
+	elif command -v paru &>/dev/null; then
+		AUR_HELPER="paru"
+	else
+		AUR_HELPER=""
+	fi
+
+	if [ -n "$AUR_HELPER" ]; then
+		echo "Trying AUR with $AUR_HELPER..."
+		if $AUR_HELPER -S "$package" --noconfirm 2>&1; then
+			echo "$package installed from AUR"
+			return 0
+		else
+			echo "Failed to install $package from AUR"
+			return 1
+		fi
+	else
+		echo "No AUR helper found. Install manually:"
+		echo "  yay -S $package"
+		echo "  or"
+		echo "  paru -S $package"
+		echo ""
+		read -p "Build from AUR manually? (y/n): " -n 1 -r
+		echo
+		if [[ $REPLY =~ ^[Yy]$ ]]; then
+			install_package base-devel
+			install_repo "$package" "https://aur.archlinux.org/$package.git" "/tmp/$package"
+			cd "/tmp/$package" || return 1
+			makepkg -si --noconfirm
+			cd "$DOTFILES_DIR" || return 1
+			rm -rf "/tmp/$package"
+			echo "$package installed from AUR"
+			return 0
+		fi
+		return 1
+	fi
+}
+
 install_package() {
 	local package=$1
 
@@ -99,7 +142,16 @@ install_package() {
 			echo "$package installed"
 		else
 			echo "Failed to install $package (might not be available in repos)"
-			return 1
+
+			case "$PKG_MANAGER" in
+			pacman)
+				install_aur "$package"
+				;;
+			*)
+				echo "Install $package manually"
+				return 1
+				;;
+			esac
 		fi
 	else
 		echo "$package already installed"
@@ -170,38 +222,7 @@ if is_selected "wallust"; then
 	if ! command -v wallust &>/dev/null; then
 		case $PKG_MANAGER in
 		pacman)
-			# Detect AUR helper
-			if command -v yay &>/dev/null; then
-				AUR_HELPER="yay"
-			elif command -v paru &>/dev/null; then
-				AUR_HELPER="paru"
-			else
-				AUR_HELPER=""
-			fi
-
-			if [ -n "$AUR_HELPER" ]; then
-				echo ""
-				read -p "wallust not found. Install from AUR with $AUR_HELPER? (y/n): " -n 1 -r
-				echo
-				if [[ $REPLY =~ ^[Yy]$ ]]; then
-					$AUR_HELPER -S wallust --noconfirm
-					echo "✓ wallust installed"
-				fi
-			else
-				echo ""
-				read -p "wallust not found. Build from AUR manually? (y/n): " -n 1 -r
-				echo
-				if [[ $REPLY =~ ^[Yy]$ ]]; then
-					install_package base-devel
-					cd /tmp || exit
-					install_repo "wallust" "https://aur.archlinux.org/wallust.git" "/tmp/wallust"
-					cd wallust || exit
-					makepkg -si --noconfirm
-					cd "$DOTFILES_DIR" || exit
-					rm -rf /tmp/wallust
-					echo "wallust installed"
-				fi
-			fi
+			install_aur wallust
 			;;
 		apt | dnf | zypper)
 			echo ""
@@ -212,7 +233,7 @@ if is_selected "wallust"; then
 				curl -L https://github.com/explosion-mental/wallust/releases/latest/download/wallust-linux-x86_64 -o /tmp/wallust
 				sudo install -Dm755 /tmp/wallust /usr/local/bin/wallust
 				rm /tmp/wallust
-				echo "✓ wallust installed"
+				echo "wallust installed"
 			fi
 			;;
 		brew)
@@ -358,6 +379,7 @@ if is_selected "hypr"; then
 
 	install_package hyprsunset
 	install_package hyprlock
+	install_package hyprshot
 	install_package alacritty
 	install_package dolphin
 	install_package keyd

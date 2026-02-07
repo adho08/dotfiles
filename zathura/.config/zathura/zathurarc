@@ -1,6 +1,7 @@
 include "./colors"
 
 set selection-clipboard clipboard
+set font "JetBrains Nerd Font Mono 9"
 
 # neovim support
 set synctex true
