@@ -29,6 +29,7 @@ return {
 		}
 
 		if IN_LINUX then
+			-- mark current text in pdf viewer
 			vim.keymap.set("n", "<leader>z", function()
 				local file = vim.fn.expand("%:p")
 				local line = vim.fn.line(".")

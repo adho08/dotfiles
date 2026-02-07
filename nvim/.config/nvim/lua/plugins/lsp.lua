@@ -2,74 +2,81 @@ return {
 	{
 		"williamboman/mason.nvim",
 		build = ":MasonUpdate",
-		config = function()
-			require("mason").setup()
-		end,
+		config = true,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		dependencies = {
-			"williamboman/mason.nvim",
+		dependencies = "williamboman/mason.nvim",
+		opts = {
+			ensure_installed = {
+				"lua_ls",
+				"vtsls",
+				"pyright",
+				"texlab",
+				"bashls",
+				"clangd",
+				"cssls",
+				"rust_analyzer",
+			},
 		},
-		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"lua_ls",
-					"vtsls",
-					"pyright",
-					"texlab",
-					"bashls",
-					"clangd",
-					"cssls",
-				},
-			})
-		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = {
-			"williamboman/mason-lspconfig.nvim",
-		},
+		dependencies = "williamboman/mason-lspconfig.nvim",
 		config = function()
-			-- Enable all Mason-installed servers
-			local servers = { "hyprls", "lua_ls", "vtsls", "pyright", "texlab", "bashls", "clangd", "cssls" }
-
-			for _, server in ipairs(servers) do
-				vim.lsp.enable(server)
-			end
-
-			-- Override specific settings only where needed
-			vim.lsp.config("lua_ls", {
-				settings = {
-					Lua = {
-						diagnostics = { globals = { "vim" } },
+			-- LSP settings
+			local servers = {
+				lua_ls = {
+					settings = {
+						Lua = {
+							diagnostics = { globals = { "vim" } },
+						},
 					},
 				},
-			})
+				texlab = {
+					settings = {
+						texlab = {
+							chktex = { onEdit = true, onOpenAndSave = true },
+							build = { onSave = true },
+						},
+					},
+				},
+			}
 
-			-- Set up the on_attach callback
+			-- Enable servers
+			for name, config in pairs(servers) do
+				vim.lsp.config(name, config)
+				vim.lsp.enable(name)
+			end
+
+			-- Enable servers without custom config
+			for _, name in ipairs({ "hyprls", "vtsls", "pyright", "bashls", "clangd", "cssls", "rust_analyzer" }) do
+				vim.lsp.enable(name)
+			end
+
+			-- Keymaps on LSP attach
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(args)
 					local client = vim.lsp.get_client_by_id(args.data.client_id)
-					local bufnr = args.buf
 
-					-- Disable signature help provider for clangd
 					if client.name == "clangd" then
 						client.server_capabilities.signatureHelpProvider = false
 					end
 
-					-- Key mappings (buffer-specific)
-					local opts = { buffer = bufnr, noremap = true, silent = true }
-					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-					vim.keymap.set("n", "B", vim.lsp.buf.hover, opts)
-					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-					vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-					vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-					vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-					vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-					vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-					vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
+					local map = function(mode, lhs, rhs)
+						vim.keymap.set(mode, lhs, rhs, { buffer = args.buf, silent = true })
+					end
+
+					map("n", "gd", vim.lsp.buf.definition)
+					map("n", "gD", vim.lsp.buf.declaration)
+					map("n", "B", vim.lsp.buf.hover)
+					map("n", "gi", vim.lsp.buf.implementation)
+					map("n", "<leader>rn", vim.lsp.buf.rename)
+					map("n", "<leader>ca", vim.lsp.buf.code_action)
+					map("n", "gr", vim.lsp.buf.references)
+					map("n", "[d", vim.diagnostic.goto_prev)
+					map("n", "]d", vim.diagnostic.goto_next)
+					map("n", "<leader>e", vim.diagnostic.open_float)
 				end,
 			})
 		end,
