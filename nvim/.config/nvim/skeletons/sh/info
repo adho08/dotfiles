@@ -1,0 +1,10 @@
+/**
+ * File: ${filename}.${fileext}
+ * Author: ${gh-user} <${gh-email}>
+ * Created: ${date}
+ * Copyright (c) ${year}
+ *
+ * Description: ${cursor}
+ */
+
+#!/bin/bash
