@@ -5,6 +5,7 @@ export BROWSER='org.mozilla.firefox.desktop'
 export AUTHOR="Adrian Hossner"
 export ZSH_CUSTOM="$HOME/.config/zsh/custom/"
 export ZSH_SCRIPTS="$HOME/.config/zsh/scripts"
+export MESA_LOG_LEVEL=error # surpress driver warnings
 
 # ---------- aliases ---------- 
 alias c='wl-copy'
