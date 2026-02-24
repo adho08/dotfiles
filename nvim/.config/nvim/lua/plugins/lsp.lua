@@ -17,6 +17,7 @@ return {
 				"clangd",
 				"cssls",
 				"rust_analyzer",
+				"air",
 			},
 		},
 	},
@@ -37,7 +38,10 @@ return {
 					settings = {
 						texlab = {
 							chktex = { onEdit = true, onOpenAndSave = true },
-							build = { onSave = true },
+							build = {
+								executable = "",
+								onSave = false,
+							},
 						},
 					},
 				},
@@ -50,7 +54,16 @@ return {
 			end
 
 			-- Enable servers without custom config
-			for _, name in ipairs({ "hyprls", "vtsls", "pyright", "bashls", "clangd", "cssls", "rust_analyzer" }) do
+			for _, name in ipairs({
+				"hyprls",
+				"vtsls",
+				"pyright",
+				"bashls",
+				"clangd",
+				"cssls",
+				"rust_analyzer",
+				"air",
+			}) do
 				vim.lsp.enable(name)
 			end
 

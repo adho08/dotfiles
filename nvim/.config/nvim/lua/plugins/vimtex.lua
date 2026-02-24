@@ -2,7 +2,7 @@ return {
 	"lervag/vimtex",
 	lazy = false, -- we don't want to lazy load VimTeX
 	-- tag = "v2.15", -- uncomment to pin to a specific release
-	config = function()
+	init = function()
 		if IN_WINDOWS or IN_WSL then
 			-- Use a custom script for viewing PDFs
 			vim.g.vimtex_view_method = "general"
@@ -15,6 +15,7 @@ return {
 		-- Make sure latexmk generates synctex data
 		vim.g.vimtex_compiler_latexmk = {
 			out_dir = "build",
+			aux_dir = "build", -- important for biber to find the aux file
 			callback = 1,
 			continuous = 1,
 			executable = "latexmk",

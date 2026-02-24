@@ -7,5 +7,8 @@ return {
 		options = {
 			relativenumber = false,
 		},
+
+		-- Keybinds
+		vim.keymap.set("n", "Zm", ":ZenMode<CR>"),
 	},
 }

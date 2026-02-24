@@ -6,10 +6,12 @@ return {
 			cpp = { "clang-format" },
 			python = { "black", "isort" },
 			rust = { "rustfmt" },
-			javascript = { "eslint_d", "prettier", stop_after_first = true },
+			javascript = { "eslint-d", "prettier" },
+			typescript = { "eslint-d", "prettier" },
 			shell = { "shfmt" },
 			yaml = { "yamlfmt" },
 			latex = { "latexindent" },
+			r = { "air" },
 		},
 		format_on_save = {
 			timeout_ms = 400,

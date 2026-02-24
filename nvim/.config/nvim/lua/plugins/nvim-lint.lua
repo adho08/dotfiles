@@ -27,8 +27,8 @@ return {
 
 			-- Web
 			css = { "stylelint" },
-			javascript = { "eslint" },
-			typescript = { "eslint" },
+			javascript = { "eslint_d" },
+			typescript = { "eslint_d" },
 
 			-- Java
 			java = { "checkstyle" },
