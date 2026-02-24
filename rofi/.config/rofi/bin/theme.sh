@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Import Current Theme
-DIR="$HOME/.config/rofi/custom/bin"
+DIR="$HOME/.config/rofi/bin"
 THEME="$DIR/../layouts/type-1.rasi"
 
 # Theme information
@@ -14,9 +14,9 @@ LIST_COL='3'
 LIST_ROW='1'
 
 # CMDs (add your apps here)
-select_wallpaper_and_theme="$HOME/.config/rofi/custom/bin/theme-wallpaper_list.sh"
-select_wallpaper="$HOME/.config/rofi/custom/bin/wallpaper_list.sh"
-select_theme="$HOME/.config/rofi/custom/bin/theme_list.sh"
+select_wallpaper_and_theme="$HOME/.config/rofi/bin/theme-wallpaper_list.sh"
+select_wallpaper="$HOME/.config/rofi/bin/wallpaper_list.sh"
+select_theme="$HOME/.config/rofi/bin/colors_list.sh"
 
 # Options
 option_1='  +  '
@@ -53,14 +53,13 @@ run_cmd() {
 # Actions
 chosen="$(run_rofi)"
 case ${chosen} in
-    "$option_1")
-		run_cmd --opt1
-        ;;
-    "$option_2")
-		run_cmd --opt2
-        ;;
-    "$option_3")
-		run_cmd --opt3
-        ;;
+"$option_1")
+	run_cmd --opt1
+	;;
+"$option_2")
+	run_cmd --opt2
+	;;
+"$option_3")
+	run_cmd --opt3
+	;;
 esac
-

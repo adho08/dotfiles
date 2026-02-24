@@ -3,14 +3,14 @@
 SCRIPT_DIR="$(dirname "$0")"
 
 # Import Current Theme
-DIR="$HOME/.config/rofi/custom/bin"
+DIR="$HOME/.config/rofi/bin"
 THEME="$DIR/../layouts/type-1.rasi"
 
 # Bluetooth information
 bluetooth_enabled=$(bluetoothctl show | grep -q "Powered: yes" && echo "yes" || echo "no")
 devices_connected=$(bluetoothctl devices Connected | cut -d ' ' -f 3-)
-if [[ -z "$devices_connected" ]] ; then
-    devices_connected="None"
+if [[ -z "$devices_connected" ]]; then
+	devices_connected="None"
 fi
 
 # Theme Elements
@@ -22,26 +22,26 @@ LIST_ROW='1'
 # Commands
 list_devices="$SCRIPT_DIR/bluetooth_list.sh"
 scan() {
-    bluetoothctl --timeout 5 scan on
-    "$list_devices"
+	bluetoothctl --timeout 5 scan on
+	"$list_devices"
 }
 
 if [[ "$bluetooth_enabled" == "yes" ]]; then
-    toggle_bluetooth_status="bluetoothctl power off"
+	toggle_bluetooth_status="bluetoothctl power off"
 else
-    toggle_bluetooth_status="bluetoothctl power on"
+	toggle_bluetooth_status="bluetoothctl power on"
 fi
 
 open_settings_gui="blueman-manager"
 
 # Options
 option_1=" " # List paired/known devices
-option_2="󱉶" # Scan available devices
+option_2="󱉶"  # Scan available devices
 
-if [[ "$bluetooth_enabled" == "yes" ]] ; then
-    option_3="󰂲" # Wifi off
+if [[ "$bluetooth_enabled" == "yes" ]]; then
+	option_3="󰂲" # Wifi off
 else
-    option_3="" # Wifi on
+	option_3="" # Wifi on
 fi
 
 option_4=" "
@@ -78,16 +78,16 @@ run_cmd() {
 # Actions
 chosen="$(run_rofi)"
 case ${chosen} in
-    "$option_1")
-		run_cmd --opt1
-        ;;
-    "$option_2")
-		run_cmd --opt2
-        ;;
-    "$option_3")
-		run_cmd --opt3
-        ;;
-    "$option_4")
-		run_cmd --opt4
-        ;;
+"$option_1")
+	run_cmd --opt1
+	;;
+"$option_2")
+	run_cmd --opt2
+	;;
+"$option_3")
+	run_cmd --opt3
+	;;
+"$option_4")
+	run_cmd --opt4
+	;;
 esac

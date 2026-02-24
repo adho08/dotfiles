@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Current Theme
-DIR="$HOME/.config/rofi/custom/bin"
+DIR="$HOME/.config/rofi/bin"
 THEME="$DIR/../layouts/type-1.rasi"
 
 # Powermenu information
@@ -60,66 +60,65 @@ run_rofi() {
 run_cmd() {
 	if [[ $1 == '--lock' ]]; then
 		if [[ "$DESKTOP_SESSION" == 'sway' ]]; then
-			swaylock_custom 
+			swaylock_custom
 		elif [[ "$DESKTOP_SESSION" == 'hyprland' ]]; then
 			hyprlock
 		fi
 	else
-	    selected="$(confirm_exit)"
-	    if [[ "$selected" == "$yes" ]]; then
-		    if [[ $1 == '--shutdown' ]]; then
-			    systemctl poweroff
-		    elif [[ $1 == '--reboot' ]]; then
-			    systemctl reboot
-		    elif [[ $1 == '--suspend' ]]; then
-			    mpc -q pause
-			    amixer set Master mute
-			    systemctl suspend
-		    elif [[ $1 == '--logout' ]]; then
-			    if [[ "$DESKTOP_SESSION" == 'sway' ]]; then
-				    swaymsg exit
-			    elif [[ "$DESKTOP_SESSION" == 'hyprland' ]]; then
-				    hyprctl dispatch exit
-			    elif [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
-				    openbox --exit
-			    elif [[ "$DESKTOP_SESSION" == 'bspwm' ]]; then
-				    bspc quit
-			    elif [[ "$DESKTOP_SESSION" == 'i3' ]]; then
-				    i3-msg exit
-			    elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
-				    qdbus org.kde.ksmserver /KSMServer logout 0 0 0
-			    fi
-		    fi
-		    # if [[ -x '/usr/bin/betterlockscreen' ]]; then
-		    # 	betterlockscreen -l
-		    # elif [[ -x '/usr/bin/i3lock' ]]; then
-		    # 	i3lock
-		    # elif [[ "$XDG_SESSION_TYPE" == 'wayland' ]]; then
-		    # 	swaylock_custom
-		    # fi
-	    else
-		    exit 0
-	    fi
+		selected="$(confirm_exit)"
+		if [[ "$selected" == "$yes" ]]; then
+			if [[ $1 == '--shutdown' ]]; then
+				systemctl poweroff
+			elif [[ $1 == '--reboot' ]]; then
+				systemctl reboot
+			elif [[ $1 == '--suspend' ]]; then
+				mpc -q pause
+				amixer set Master mute
+				systemctl suspend
+			elif [[ $1 == '--logout' ]]; then
+				if [[ "$DESKTOP_SESSION" == 'sway' ]]; then
+					swaymsg exit
+				elif [[ "$DESKTOP_SESSION" == 'hyprland' ]]; then
+					hyprctl dispatch exit
+				elif [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
+					openbox --exit
+				elif [[ "$DESKTOP_SESSION" == 'bspwm' ]]; then
+					bspc quit
+				elif [[ "$DESKTOP_SESSION" == 'i3' ]]; then
+					i3-msg exit
+				elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
+					qdbus org.kde.ksmserver /KSMServer logout 0 0 0
+				fi
+			fi
+			# if [[ -x '/usr/bin/betterlockscreen' ]]; then
+			# 	betterlockscreen -l
+			# elif [[ -x '/usr/bin/i3lock' ]]; then
+			# 	i3lock
+			# elif [[ "$XDG_SESSION_TYPE" == 'wayland' ]]; then
+			# 	swaylock_custom
+			# fi
+		else
+			exit 0
+		fi
 	fi
 }
 
 # Actions
 chosen="$(run_rofi)"
 case ${chosen} in
-    "$shutdown")
-		run_cmd --shutdown
-        ;;
-    "$reboot")
-		run_cmd --reboot
-        ;;
-    "$lock")
-		run_cmd --lock
-        ;;
-    "$suspend")
-		run_cmd --suspend
-        ;;
-    "$logout")
-		run_cmd --logout
-        ;;
+"$shutdown")
+	run_cmd --shutdown
+	;;
+"$reboot")
+	run_cmd --reboot
+	;;
+"$lock")
+	run_cmd --lock
+	;;
+"$suspend")
+	run_cmd --suspend
+	;;
+"$logout")
+	run_cmd --logout
+	;;
 esac
-

@@ -1,14 +1,14 @@
 #!/bin/bash
 
 WALLPAPERS_DIR="$HOME/Pictures/Wallpapers"
-THEME="$HOME/.config/rofi/custom/layouts/type-2.rasi"
-PROMPT="Select Wallpaper and Theme" 
+THEME="$HOME/.config/rofi/layouts/type-2.rasi"
+PROMPT="Select Wallpaper and Theme"
 
 # Get themes without extension for display
 themes=$(find "$WALLPAPERS_DIR" -type f -exec basename {} \; | sed 's/\.[^.]*$//')
 
 rofi_cmd() {
-	rofi 	-dmenu \
+	rofi -dmenu \
 		-p "$PROMPT" \
 		-theme "$THEME" \
 		-i
@@ -25,7 +25,7 @@ selected=$(run_rofi)
 full_path=$(find "$WALLPAPERS_DIR" -type f -name "$selected.*" | head -1)
 
 if [[ -n "$full_path" ]]; then
-    bash -c "$HOME/.config/wallust/set-colors.sh '$full_path'"
+	bash -c "$HOME/.config/wallust/scripts/set-theme.sh '$full_path'"
 else
-    notify-send "Error" "Wallpaper not found"
+	notify-send "Error" "Wallpaper not found"
 fi

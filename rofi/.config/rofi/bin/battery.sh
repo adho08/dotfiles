@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Import Current Theme
-DIR="$HOME/.config/rofi/custom/bin"
+DIR="$HOME/.config/rofi/bin"
 THEME="$DIR/../layouts/type-1.rasi"
 
 # Battey information
@@ -18,7 +18,7 @@ LIST_COL='2'
 LIST_ROW='1'
 
 # CMDs (add your apps here)
-change_powerprofile="$HOME/.config/rofi/custom/bin/battery_powerprofile.sh"
+change_powerprofile="$HOME/.config/rofi/bin/battery_powerprofile.sh"
 open_settings_gui='gnome-power-statistics'
 
 # Options
@@ -52,11 +52,10 @@ run_cmd() {
 # Actions
 chosen="$(run_rofi)"
 case ${chosen} in
-    "$option_1")
-		run_cmd --opt1
-        ;;
-    "$option_2")
-		run_cmd --opt2
-        ;;
+"$option_1")
+	run_cmd --opt1
+	;;
+"$option_2")
+	run_cmd --opt2
+	;;
 esac
-

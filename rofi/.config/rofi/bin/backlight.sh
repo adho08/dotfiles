@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Import Current Theme
-DIR="$HOME/.config/rofi/custom/bin"
+DIR="$HOME/.config/rofi/bin"
 THEME="$DIR/../layouts/type-1.rasi"
 
 # Backlight information
@@ -17,10 +17,10 @@ kdb_backlight="$(brightnessctl --device='*kbd_backlight' -m | cut -d',' -f4 | tr
 temperature=$(pgrep -a gammastep | grep -oP '\-O \K[0-9]+')
 
 if [[ -n "$temperature" ]]; then
-    filter_percent=$(bc <<< "scale=0; (6500 - $temperature) * 100 / 6500")
-    bluelight_filter="${filter_percent}"
+	filter_percent=$(bc <<<"scale=0; (6500 - $temperature) * 100 / 6500")
+	bluelight_filter="${filter_percent}"
 else
-    bluelight_filter="0"
+	bluelight_filter="0"
 fi
 
 # Theme Elements
@@ -40,7 +40,6 @@ else
 	# Set it to 50% (3250K)
 	bluelight_filter="3250"
 fi
-
 
 if [[ "$DESKTOP_SESSION" == 'hyprland' ]]; then
 	set_bluelight_filter="pkill hyprsunset; hyprsunset -t $bluelight_filter &"
@@ -92,14 +91,13 @@ run_cmd() {
 # Actions
 chosen="$(run_rofi)"
 case ${chosen} in
-    "$option_1")
-		run_cmd --opt1
-        ;;
-    "$option_2")
-		run_cmd --opt2
-        ;;
-    "$option_3")
-		run_cmd --opt3
-        ;;
+"$option_1")
+	run_cmd --opt1
+	;;
+"$option_2")
+	run_cmd --opt2
+	;;
+"$option_3")
+	run_cmd --opt3
+	;;
 esac
-

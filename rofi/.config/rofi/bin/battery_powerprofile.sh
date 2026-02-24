@@ -1,31 +1,31 @@
 #!/bin/bash
 
-THEME="$HOME/.config/rofi/custom/layouts/type-2.rasi"
-PROMPT="Select Power Profile" 
+THEME="$HOME/.config/rofi/layouts/type-2.rasi"
+PROMPT="Select Power Profile"
 
 option_1='  Power-Saver'
 option_2='󰊚  Balanced'
 option_3='󰓅  Performance'
 
 case "$(powerprofilesctl get)" in
-	'power-saver')
-	    option_1+='*'
-		;;
-	'balanced')
-	    option_2+='*'
-		;;
-	'performance')
-	    option_3+='*'
-		;;
+'power-saver')
+	option_1+='*'
+	;;
+'balanced')
+	option_2+='*'
+	;;
+'performance')
+	option_3+='*'
+	;;
 esac
 
 # Get list of WiFi networks
 get_power_profiles() {
-        echo -e "$option_1\n$option_2\n$option_3"
+	echo -e "$option_1\n$option_2\n$option_3"
 }
 
 rofi_cmd() {
-	rofi 	-dmenu \
+	rofi -dmenu \
 		-p "$PROMPT" \
 		-markup-rows \
 		-theme "$THEME" \
@@ -51,13 +51,13 @@ run_cmd() {
 # Actions
 chosen="$(run_rofi)"
 case ${chosen} in
-    "$option_1")
-		run_cmd --opt1
-        ;;
-    "$option_2")
-		run_cmd --opt2
-        ;;
-    "$option_3")
-		run_cmd --opt3
-        ;;
+"$option_1")
+	run_cmd --opt1
+	;;
+"$option_2")
+	run_cmd --opt2
+	;;
+"$option_3")
+	run_cmd --opt3
+	;;
 esac

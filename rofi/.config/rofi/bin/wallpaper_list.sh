@@ -1,14 +1,14 @@
 #!/bin/bash
 
 WALLPAPERS_DIR="$HOME/Pictures/Wallpapers"
-THEME="$HOME/.config/rofi/custom/layouts/type-2.rasi"
-PROMPT="Select Wallpaper" 
+THEME="$HOME/.config/rofi/layouts/type-2.rasi"
+PROMPT="Select Wallpaper"
 
 # Get themes without extension for display
 themes=$(find "$WALLPAPERS_DIR" -type f -exec basename {} \; | sed 's/\.[^.]*$//')
 
 rofi_cmd() {
-	rofi 	-dmenu \
+	rofi -dmenu \
 		-p "$PROMPT" \
 		-theme "$THEME" \
 		-i
@@ -19,11 +19,7 @@ run_rofi() {
 }
 
 run_cmd() {
-    if [[ "$DESKTOP_SESSION" == 'hyprland' ]]; then
-	hyprctl hyprpaper wallpaper ",$1" &
-    elif [[ "$DESKTOP_SESSION" == 'sway' ]]; then
-	swaybg -i "$1" -m fill &
-    fi
+	"$HOME/.config/wallust/scripts/set-wallpaper.sh" "$1"
 }
 
 selected=$(run_rofi)
@@ -33,8 +29,7 @@ selected=$(run_rofi)
 full_path=$(find "$WALLPAPERS_DIR" -type f -name "$selected.*" | head -1)
 
 if [[ -n "$full_path" ]]; then
-    run_cmd "$full_path"
+	run_cmd "$full_path"
 else
-    notify-send "Error" "Wallpaper not found"
+	notify-send "Error" "Wallpaper not found"
 fi
-

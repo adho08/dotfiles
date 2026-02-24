@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Import Current Theme
-DIR="$HOME/.config/rofi/custom/bin"
+DIR="$HOME/.config/rofi/bin"
 THEME="$DIR/../layouts/type-1.rasi"
 
 # Network information
@@ -17,12 +17,12 @@ LIST_COL='3'
 LIST_ROW='1'
 
 # Commands
-connect_cmd="$HOME/.config/rofi/custom/bin/network_connect.sh"
+connect_cmd="$HOME/.config/rofi/bin/network_connect.sh"
 
 if [[ "$(nmcli radio wifi)" == "enabled" ]]; then
-    toggle_wifi_cmd="nmcli radio wifi off"
+	toggle_wifi_cmd="nmcli radio wifi off"
 else
-    toggle_wifi_cmd="nmcli radio wifi on"
+	toggle_wifi_cmd="nmcli radio wifi on"
 fi
 
 open_settings_gui='nm-connection-editor'
@@ -31,10 +31,10 @@ open_settings_gui='nm-connection-editor'
 option_1="  " # Connect
 
 wifi_status=$(nmcli radio wifi)
-if [[ "$wifi_status" == "enabled" ]] ; then
-    option_2="󰖪 " # Wifi off/on
+if [[ "$wifi_status" == "enabled" ]]; then
+	option_2="󰖪 " # Wifi off/on
 else
-    option_2="󰖩 " # Wifi off/on
+	option_2="󰖩 " # Wifi off/on
 fi
 
 option_3=" "
@@ -67,13 +67,13 @@ run_cmd() {
 # Actions
 chosen="$(run_rofi)"
 case ${chosen} in
-    "$option_1")
-		run_cmd --opt1
-        ;;
-    "$option_2")
-		run_cmd --opt2
-        ;;
-    "$option_3")
-		run_cmd --opt3
-        ;;
+"$option_1")
+	run_cmd --opt1
+	;;
+"$option_2")
+	run_cmd --opt2
+	;;
+"$option_3")
+	run_cmd --opt3
+	;;
 esac
