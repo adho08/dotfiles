@@ -1,4 +1,9 @@
 {
+  "custom/distro-icon": {
+    "format": "󱘊",
+    "on-click": "ags toggle main-widget",
+    "tooltip": false,
+    },
   "hyprland/workspaces": {
     "format": "{name}",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
@@ -32,6 +37,16 @@
       //   "focused": "",
       //   "default": "",
     }
+  },
+  "ext/workspaces": {
+    "format": "{icon}",
+    "ignore-hidden": true,
+    "on-click": "activate",
+    "on-click-right": "deactivate",
+    "sort-by-id": true
+  },
+  "dwl/window": {
+    "format": "[{layout}] {title}"
   },
   "keyboard-state": {
     "numlock": true,
@@ -128,7 +143,7 @@
     "tooltip": false,
     "format": "{icon} {percent}%",
     "format-icons": ["", "", "", "", "", "", "", "", ""],
-    "on-click": "bash /home/adrianh/.config/rofi/custom/bin/backlight.sh"
+    "on-click": "bash /home/adrianh/.config/rofi/bin/backlight.sh"
   },
   "battery": {
     "tooltip": false,
@@ -145,7 +160,7 @@
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
     "format-icons": ["", "", "", "", ""],
-    "on-click": "bash /home/adrianh/.config/rofi/custom/bin/battery.sh"
+    "on-click": "bash /home/adrianh/.config/rofi/bin/battery.sh"
   },
   "battery#bat2": {
     "bat": "BAT2"
@@ -171,7 +186,7 @@
     "format-disconnected": "󰖪 Disconnected",
     "format-disabled": "󰖪 Disabled",
     /* "format-alt": "{ifname}: {ipaddr}/{cidr}" */
-    "on-click": "bash /home/adrianh/.config/rofi/custom/bin/network.sh"
+    "on-click": "bash /home/adrianh/.config/rofi/bin/network.sh"
   },
   "bluetooth": {
     // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
@@ -182,7 +197,7 @@
     "tooltip-format": "{controller_alias}\t{controller_address}",
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "on-click": "bash /home/adrianh/.config/rofi/custom/bin/bluetooth.sh"
+    "on-click": "bash /home/adrianh/.config/rofi/bin/bluetooth.sh"
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
@@ -210,7 +225,6 @@
     "on-scroll-down": "waybar-media.py next",
     "escape": true
   },
-
   "mpris#prev": {
     "format": "󰒮",
     "on-click": "playerctl previous",
@@ -240,9 +254,18 @@
     "on-click": "~/.config/waybar/scripts/focus-player.sh",
     "tooltip": false
   },
+    "group/media": {
+    "orientation": "horizontal",
+    "modules": [
+      "mpris#prev",
+      "mpris#playpause",
+      "mpris#next",
+      "mpris"
+    ]
+  },
   "custom/power": {
     "format": "⏻",
-    "on-click": "bash ~/.config/rofi/custom/bin/powermenu.sh",
+    "on-click": "bash ~/.config/rofi/bin/powermenu.sh",
     "tooltip": false
   },
   "wlr/taskbar": {

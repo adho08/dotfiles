@@ -1,0 +1,24 @@
+// -*- mode: jsonc -*-
+// Load modules
+{
+  "layer": "top",
+  "position": "top",
+  "height": 54,
+  "exclusive": true,
+  "style": "~/.config/waybar/mango/mango.css",
+  "include": ["~/.config/waybar/modules.json"],
+  "modules-left": [
+    "custom/distro-icon",
+    "ext/workspaces",
+    "group/media"
+  ],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "bluetooth",
+    "pulseaudio",
+    "network",
+    "backlight",
+    "battery",
+    "custom/power",
+  ],
+}

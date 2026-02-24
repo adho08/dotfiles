@@ -1,13 +1,13 @@
-// -*- mode: jsonc -*-
 // Load modules
 {
   "layer": "top",
   "position": "top",
   "height": 54,
   "exclusive": true,
-  "style": "~/.config/waybar/rounded-hypr.css",
+  "style": "~/.config/waybar/hypr/hypr.css",
   "include": ["~/.config/waybar/modules.json"],
   "modules-left": [
+    "custom/distro-icon",
     "hyprland/workspaces",
     "mpris#prev",
     "mpris#playpause",

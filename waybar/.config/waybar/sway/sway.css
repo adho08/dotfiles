@@ -1,4 +1,4 @@
-@import "colors.css";
+@import "../colors.css";
 
 * {
 	font-family: JetBrains Mono Nerd Font;
@@ -7,15 +7,12 @@
 }
 
 window#waybar {
-	background-color: rgba(25, 30, 35, 0.6);
-	background-color: transparent;
+	background-color: rgba(25, 30, 35, 1);
 }
 
 window#waybar>box {
-	border-radius: 12px;
-	background-color: rgba(00, 00, 00, 0.5);
+	border-radius: 8px;
 	margin: 4px 8px 8px 8px;
-	/* box-shadow: 4px 4px 2px 1px #101010; */
 }
 
 /* Add spacing between module groups */
@@ -24,22 +21,16 @@ window#waybar>box {
 .modules-right {
 	margin: 5px;
 	border-radius: 12px;
-	background-color: transparent;
-	/* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); */
+	background-color: rgba(1, 5, 8, 1);
 }
 
 /* Default for all modules */
 .module {
-	background-color: @background;
+	background-color: rgba(1, 5, 8, 1);
 	color: @foreground;
 	margin: 5px;
 	padding: 5px 15px;
 	border: none;
-	transition:
-		background-color 0.2s ease,
-		color 0.2s ease,
-		box-shadow 0.2s ease,
-		margin 0.2s ease;
 }
 
 .module:hover {
@@ -90,45 +81,41 @@ window#waybar>box {
 
 #workspaces button {
 	padding: 0 10px;
-	margin: 2px;
-	background-color: @background;
+	margin: 0;
+	background-color: transparent;
 	color: @foreground;
-	border-radius: 10px;
-}
-
-#workspaces button.active {
-	background-color: @color13;
-	color: @foreground;
+	border-radius: 8px;
 }
 
 #workspaces button.focused {
 	background-color: @color13;
-	color: @foreground;
+	color: @color15;
+	border-radius: 8px;
+	margin: 2px;
+}
+
+#workspaces button.active {
+	background-color: @color13;
+	color: @color15;
+	border-radius: 8px;
+	margin: 2px;
 }
 
 #workspaces button.empty {
-	background: @color13;
-	color: @color0;
+	color: alpha(@foreground, 0.4);
 }
 
 #workspaces button.urgent {
-	background: @color9;
-	color: @foreground;
+	background-color: @color1;
+	color: @color9;
+	border-radius: 8px;
 }
 
-#workspaces button:hover {
-	background-color: inherit;
-	color: @foreground;
-	/* border: none; */
-	padding: 0 10px;
-}
-
-animation .module,
-#workspaces button {
-	transition:
-		background-color 0.2s ease,
-		color 0.2s ease;
-}
+/* #workspaces button:hover { */
+/* 	background-color: @color8; */
+/* 	color: @color0; */
+/* 	border-radius: 8px; */
+/* } */
 
 /* Battery critical state */
 #battery.critical:not(.charging) {
@@ -136,33 +123,13 @@ animation .module,
 	color: @color15;
 }
 
-#clock {
-	border-radius: 10px;
+/* Tray */
+#tray>.passive {
+	-gtk-icon-effect: dim;
 }
 
-#mpris.prev {
-	border-radius: 10px 0 0 10px;
-	padding: 0 10px;
-	margin: 0;
-	margin-left: 5px;
-}
-
-#mpris.playpause,
-#mpris.next {
-	padding: 0 10px;
-	margin: 0;
-	border-radius: 0 0 0 0;
-}
-
-#mpris {
-	border-radius: 0 10px 10px 0;
-	padding: 0 10px;
-	margin: 0;
-}
-
-#mpris.next.stopped {
-	opacity: 0;
-	min-width: 0;
-	padding: 0;
-	margin: 0;
+#tray>.needs-attention {
+	-gtk-icon-effect: highlight;
+	background-color: @color1;
+	color: @color15;
 }

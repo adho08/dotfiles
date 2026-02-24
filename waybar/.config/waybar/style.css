@@ -1,127 +1,165 @@
 @import "colors.css";
-@import "rounded-sway.css";
-@import "rounded-hypr.css";
 
 * {
-  /* `otf-font-awesome` is required to be installed for icons */
-  font-family: JetBrains Mono Nerd Font;
-  font-size: 15px;
-  background-color: alpha(@background, 0);
+	/* `otf-font-awesome` is required to be installed for icons */
+	font-family: JetBrains Mono Nerd Font;
+	font-size: 15px;
+	transition: none;
 }
 
 window#waybar {
-  background-color: transparent;
-  /* transition-property: background-color; */
-  /* transition-duration: 0.2s; */
+	background-color: transparent;
 }
 
-.modules-right > * {
-  margin: 0;
-  padding: 0;
-}
-
-.modules-right > * > * {
-  margin: 0;
+window#waybar>box {
+	border-radius: 12px;
+	background-color: rgba(0, 0, 0, 0.5);
+	margin: 4px 8px 8px 8px;
+	/* box-shadow: 4px 4px 2px 1px #101010; */
 }
 
 /* Default for all modules */
 .module {
-  background-color: @background;
-  color: @foreground;
-  margin: 0;
-  padding: 0 15px;
-  border: none;
+	background-color: @background;
+	color: @foreground;
+	margin: 0;
+	padding: 0 15px;
 }
 
-.module:hover {
-  background-color: @color8;
-  color: @color0;
-  /* transition: background-color 0.2s ease-in-out; */
+/* Default for all module groups */
+.modules-left,
+.modules-center,
+.modules-right {
+	margin: 5px;
+	background-color: transparent;
+	/* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); */
 }
 
-/* button { */
-/* Use box-shadow instead of border so the text isn't offset */
-/* box-shadow: inset 0 -3px transparent; */
-/* Avoid rounded borders under each button name border: none; */
-/* border-radius: 0; */
-/* } */
+/* Round the corners for first and last modules in modules-left */
+.modules-left>widget:first-child>* {
+	border-radius: 10px 0 0 10px;
+}
 
-/* #workspaces button:hover { */
-/*   background: inherit; */
-/*   color: inherit; */
-/*   box-shadow: inherit; */
-/*   transition: none; */
-/* } */
-/**/
-/* #workspaces button { */
-/*   padding: 0 10px; */
-/*   margin: 0; */
-/*   background-color: @background; */
-/*   color: @foreground; */
-/*   transition: all 0.2s ease-in-out; */
-/*   border: none; */
-/*   box-shadow: none; */
-/*   text-shadow: none; */
-/*   background-image: none; */
-/* } */
-/**/
-/* #workspaces button.focused { */
-/*   background-color: @color13; */
-/*   color: @color15; */
-/* } */
-/**/
-/* #workspaces button.urgent { */
-/*   background-color: @color1; */
-/*   color: @color9; */
-/* } */
-/**/
-/* #workspaces { */
-/*   margin: 0; */
-/*   padding: 0; */
-/* } */
+.modules-left>widget:last-child>* {
+	border-radius: 0 10px 10px 0;
+}
+
+/* Round the corners for first and last modules in modules-center */
+.modules-center>widget:first-child>* {
+	border-radius: 10px 0 0 10px;
+}
+
+.modules-center>widget:last-child>* {
+	border-radius: 0 10px 10px 0;
+}
+
+/* Round the corners for first and last modules in modules-right */
+.modules-right>widget:first-child>* {
+	border-radius: 10px 0 0 10px;
+}
+
+.modules-right>widget:last-child>* {
+	border-radius: 0 10px 10px 0;
+}
+
+/* If a group has only one module, round all corners */
+.modules-left>widget:only-child>*,
+.modules-center>widget:only-child>*,
+.modules-right>widget:only-child>* {
+	border-radius: 10px;
+}
+
+
+#workspaces {
+	background: @background;
+	border-radius: 10px;
+	padding: 0;
+	margin-right: 10px;
+}
+
+button {
+	/* Use box-shadow instead of border so the text isn't offset */
+	box-shadow: inset 0 -3px transparent;
+	/* Avoid rounded borders under each button name border: none; */
+	border-radius: 10px;
+}
+
+#workspaces button {
+	padding: 0 10px;
+	margin: 0;
+	background-color: @background;
+	color: @foreground;
+	border: none;
+	box-shadow: none;
+	text-shadow: none;
+	background-image: none;
+}
+
+#workspaces button.active {
+	background-color: @color13;
+	color: @color15;
+}
+
+#workspaces button.focused {
+	background-color: @color13;
+	color: @color15;
+}
+
+#workspaces button.urgent {
+	background-color: @color1;
+	color: @color9;
+}
 
 /* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-  padding-left: 0;
-  margin-left: 0;
+.modules-left>widget:first-child>#workspaces {
+	padding-left: 0;
+	margin-left: 0;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-  padding-right: 0;
-  margin-right: 0;
+.modules-right>widget:last-child>#workspaces {
+	padding-right: 0;
+	margin-right: 0;
 }
 
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-  background-color: @color1;
-  color: @color15;
+	background-color: @color1;
+	color: @color15;
 }
 
 #custom-slant-left,
 #custom-slant-right {
-  background-color: transparent;
-  color: @background;
-  /* font-size is the bar height since this char needs to be the biggest to fill the height*/
-  font-size: 30px;
-  padding: 0;
-  margin: 0;
+	background-color: transparent;
+	color: @background;
+	/* font-size is the bar height since this char needs to be the biggest to fill the height */
+	font-size: 30px;
+	padding: 0;
+	margin: 0;
 }
 
-#custom-media.custom-spotify {
-  background-color: #66cc99;
+
+#media {
+	border-radius: 10px;
 }
 
-#custom-media.custom-vlc {
-  background-color: #ffa000;
+/* override inner modules to remove individual styling */
+#media * {
+	border-radius: 0;
+	min-width: 0;
 }
 
-#tray > .passive {
-  -gtk-icon-effect: dim;
+/* re-apply rounded ends only to first and last child */
+#media>widget:first-child>* {
+	border-radius: 10px 0 0 10px;
 }
 
-#tray > .needs-attention {
-  -gtk-icon-effect: highlight;
-  background-color: @color1;
-  color: @color15;
+#media>widget:last-child>* {
+	border-radius: 0 10px 10px 0;
 }
+
+/* #group-media { */
+/* 	padding: 0; */
+/* 	min-width: 0; */
+/* 	margin: 0; */
+/* } */
