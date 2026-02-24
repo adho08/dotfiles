@@ -1,30 +1,29 @@
+#!/bin/bash
+
 # Ensure compinit is loaded
 autoload -Uz compinit
 compinit -i
 
 # Generic completion function for directory navigation
 _dir_completion() {
-    local base_dir="$1"
-    shift
-    
-    local -a subdirs
-    subdirs=("$base_dir"/*(/:t))
-    _describe 'directory' subdirs
+	local base_dir="$1"
+	shift
+
+	local -a subdirs
+	subdirs=("$base_dir"/*(/:t))
+	_describe 'directory' subdirs
 }
 
-gym ()
-{
-    cd ~/Documents/GymThun/"$1" || exit
+gym() {
+	cd ~/Documents/GymThun/"$1" || exit
 }
 
-conf ()
-{
-    cd ~/.config/"$1" || exit
+conf() {
+	cd ~/.config/"$1" || exit
 }
 
-dot ()
-{
-    cd ~/.dotfiles/"$1" || exit
+dot() {
+	cd ~/.dotfiles/"$1" || exit
 }
 
 # Register completions
