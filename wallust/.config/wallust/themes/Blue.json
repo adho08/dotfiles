@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/Blue.jpg",
+    "special": {
+        "background": "#03040A",
+        "foreground": "#D5CBFF",
+        "cursor": "#D5CBFF"
+    },
+    "colors": {
+        "color0": "#04050C",
+        "color1": "#08156E",
+        "color2": "#463F7B",
+        "color3": "#1533AD",
+        "color4": "#5A61DA",
+        "color5": "#7F7DDD",
+        "color6": "#A298E8",
+        "color7": "#C8BEFF",
+        "color8": "#8379C7",
+        "color9": "#08156E",
+        "color10": "#463F7B",
+        "color11": "#1533AD",
+        "color12": "#5A61DA",
+        "color13": "#7F7DDD",
+        "color14": "#A298E8",
+        "color15": "#DBD6F7"
+    }
+}

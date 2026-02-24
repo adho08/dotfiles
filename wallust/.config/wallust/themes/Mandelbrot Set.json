@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/Mandelbrot Set.jpg",
+    "special": {
+        "background": "#040501",
+        "foreground": "#74CDE0",
+        "cursor": "#74CDE0"
+    },
+    "colors": {
+        "color0": "#050601",
+        "color1": "#2A2C15",
+        "color2": "#012735",
+        "color3": "#525929",
+        "color4": "#2B6050",
+        "color5": "#708A4A",
+        "color6": "#167F90",
+        "color7": "#60BACC",
+        "color8": "#188091",
+        "color9": "#2A2C15",
+        "color10": "#012735",
+        "color11": "#525929",
+        "color12": "#2B6050",
+        "color13": "#708A4A",
+        "color14": "#167F90",
+        "color15": "#A7D4DD"
+    }
+}

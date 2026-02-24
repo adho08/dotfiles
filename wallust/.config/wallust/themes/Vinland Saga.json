@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/Vinland Saga.png",
+    "special": {
+        "background": "#010508",
+        "foreground": "#A0CFF5",
+        "cursor": "#A0CFF5"
+    },
+    "colors": {
+        "color0": "#02070A",
+        "color1": "#152831",
+        "color2": "#33504D",
+        "color3": "#24505F",
+        "color4": "#39698A",
+        "color5": "#768A78",
+        "color6": "#5F8CAF",
+        "color7": "#90BEE3",
+        "color8": "#5380A2",
+        "color9": "#152831",
+        "color10": "#33504D",
+        "color11": "#24505F",
+        "color12": "#39698A",
+        "color13": "#768A78",
+        "color14": "#5F8CAF",
+        "color15": "#BFD6E9"
+    }
+}

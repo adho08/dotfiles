@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/Fell in Luv.jpg",
+    "special": {
+        "background": "#010101",
+        "foreground": "#BDBCBE",
+        "cursor": "#BDBCBE"
+    },
+    "colors": {
+        "color0": "#010102",
+        "color1": "#1F1E21",
+        "color2": "#2E2E2F",
+        "color3": "#3F3E41",
+        "color4": "#4F4F50",
+        "color5": "#5F5E61",
+        "color6": "#6F6F70",
+        "color7": "#A9A9AA",
+        "color8": "#717172",
+        "color9": "#1F1E21",
+        "color10": "#2E2E2F",
+        "color11": "#3F3E41",
+        "color12": "#4F4F50",
+        "color13": "#5F5E61",
+        "color14": "#6F6F70",
+        "color15": "#CCCBCC"
+    }
+}

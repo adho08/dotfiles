@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/Jupiter.jpg",
+    "special": {
+        "background": "#050501",
+        "foreground": "#E5B494",
+        "cursor": "#E5B494"
+    },
+    "colors": {
+        "color0": "#060601",
+        "color1": "#2E2417",
+        "color2": "#4F3521",
+        "color3": "#5F4A36",
+        "color4": "#5B5F51",
+        "color5": "#87573D",
+        "color6": "#946B4F",
+        "color7": "#D1A282",
+        "color8": "#926A4E",
+        "color9": "#2E2417",
+        "color10": "#4F3521",
+        "color11": "#5F4A36",
+        "color12": "#5B5F51",
+        "color13": "#87573D",
+        "color14": "#946B4F",
+        "color15": "#DFC8B8"
+    }
+}

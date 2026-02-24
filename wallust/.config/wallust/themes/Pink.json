@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/Pink.png",
+    "special": {
+        "background": "#070307",
+        "foreground": "#FF78FF",
+        "cursor": "#FF78FF"
+    },
+    "colors": {
+        "color0": "#090409",
+        "color1": "#281534",
+        "color2": "#2C193E",
+        "color3": "#573FAA",
+        "color4": "#5D45B3",
+        "color5": "#856DC3",
+        "color6": "#F237D5",
+        "color7": "#FF69FF",
+        "color8": "#D711BD",
+        "color9": "#281534",
+        "color10": "#2C193E",
+        "color11": "#573FAA",
+        "color12": "#5D45B3",
+        "color13": "#856DC3",
+        "color14": "#F237D5",
+        "color15": "#F7ACF7"
+    }
+}

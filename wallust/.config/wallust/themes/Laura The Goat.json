@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/Laura The Goat.jpg",
+    "special": {
+        "background": "#090301",
+        "foreground": "#8CDEFF",
+        "cursor": "#8CDEFF"
+    },
+    "colors": {
+        "color0": "#0C0402",
+        "color1": "#592C24",
+        "color2": "#433A57",
+        "color3": "#937697",
+        "color4": "#56609E",
+        "color5": "#E27350",
+        "color6": "#51A5C7",
+        "color7": "#7ED0F4",
+        "color8": "#358DAE",
+        "color9": "#592C24",
+        "color10": "#433A57",
+        "color11": "#937697",
+        "color12": "#56609E",
+        "color13": "#E27350",
+        "color14": "#51A5C7",
+        "color15": "#B6DFF1"
+    }
+}

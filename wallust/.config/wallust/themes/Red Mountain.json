@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/Red Mountain.jpg",
+    "special": {
+        "background": "#020509",
+        "foreground": "#FB8F9B",
+        "cursor": "#FB8F9B"
+    },
+    "colors": {
+        "color0": "#03060C",
+        "color1": "#263149",
+        "color2": "#2D172C",
+        "color3": "#49596E",
+        "color4": "#541E30",
+        "color5": "#77879F",
+        "color6": "#923C48",
+        "color7": "#E17A86",
+        "color8": "#A34955",
+        "color9": "#263149",
+        "color10": "#2D172C",
+        "color11": "#49596E",
+        "color12": "#541E30",
+        "color13": "#77879F",
+        "color14": "#923C48",
+        "color15": "#E7B4BA"
+    }
+}

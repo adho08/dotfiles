@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/Silversurfer.png",
+    "special": {
+        "background": "#010101",
+        "foreground": "#BDBDBC",
+        "cursor": "#BDBDBC"
+    },
+    "colors": {
+        "color0": "#010101",
+        "color1": "#1F1F20",
+        "color2": "#2E2E2E",
+        "color3": "#3F4040",
+        "color4": "#4E4E4E",
+        "color5": "#5F5F60",
+        "color6": "#6F6F6F",
+        "color7": "#A9A9A9",
+        "color8": "#717171",
+        "color9": "#1F1F20",
+        "color10": "#2E2E2E",
+        "color11": "#3F4040",
+        "color12": "#4E4E4E",
+        "color13": "#5F5F60",
+        "color14": "#6F6F6F",
+        "color15": "#CCCBCB"
+    }
+}

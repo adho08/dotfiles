@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/adrianh/Pictures/Wallpapers/Knight.png",
+    "special": {
+        "background": "#050409",
+        "foreground": "#C7BDCF",
+        "cursor": "#C7BDCF"
+    },
+    "colors": {
+        "color0": "#06050B",
+        "color1": "#292A30",
+        "color2": "#423D4F",
+        "color3": "#4D4F72",
+        "color4": "#535D64",
+        "color5": "#61668F",
+        "color6": "#7D7484",
+        "color7": "#B4AABC",
+        "color8": "#7A7181",
+        "color9": "#292A30",
+        "color10": "#423D4F",
+        "color11": "#4D4F72",
+        "color12": "#535D64",
+        "color13": "#61668F",
+        "color14": "#7D7484",
+        "color15": "#D1CCD5"
+    }
+}
