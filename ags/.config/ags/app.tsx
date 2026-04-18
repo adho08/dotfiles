@@ -8,6 +8,7 @@ import { AudioCenter } from "./AudioCenter"
 import { NetworkCenter } from "./NetworkCenter"
 import "./widget/notifications"
 import { NotificationPopups } from "./widget/notifications"
+import GLib from "gi://GLib?version=2.0"
 
 Adw.StyleManager.get_default().set_color_scheme(
 	Adw.ColorScheme.PREFER_DARK

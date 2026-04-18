@@ -83,7 +83,8 @@ scale highlight {
 // Notification
 
 .notifd-window {
-  background: transparent;
+  background: colors.$background;
+  padding: 0;
 }
 
 .notifd-button {

@@ -5,11 +5,13 @@ import GLib from "gi://GLib?version=2.0"
 import { createState, For } from "gnim"
 import app from "ags/gtk4/app"
 
-log("NOTIFICATIONS FILE LOADED")
-
 const notifd = Notifd.get_default()
 const { TOP, RIGHT } = Astal.WindowAnchor
-const WIN_HEIGHT = 80
+const NOTIF_HEIGHT = 74
+const NOTIF_GAP = 10
+const MARGIN_TOP = 10
+const MARGIN_RIGHT = 10
+
 const WIN_WIDTH = 300
 const SPACING = 10
 const TIMEOUT = 4000
@@ -43,69 +45,37 @@ export function NotificationButton({ css, id }: { css: string, id: number }) {
 	)
 }
 
-function NotificationWindow({ id }: { id: number }) {
-	print("NotificationWindow")
+function NotificationWindow({ id, index }: { id: number, index: number }) {
 	return (
-		<box
-			// monitor={0}
+		<window
+			application={app}
+			monitor={0}
+			name={`notifd-${id}`}
+			namespace={`notifd-${id}`}
 			visible
-			// anchor={RIGHT | TOP}
-			heightRequest={WIN_HEIGHT}
-			widthRequest={WIN_WIDTH}
-			// defaultWidth={WIN_WIDTH}
-			hexpand={false}
-		// namespace={"notifications"}
-		// layer={Astal.Layer.OVERLAY}
+			focusable={false}
+			anchor={RIGHT | TOP}
+			layer={Astal.Layer.OVERLAY}
+			marginTop={MARGIN_TOP + index * (NOTIF_HEIGHT + NOTIF_GAP)}
+			marginRight={MARGIN_RIGHT}
+			cssClasses={["notifd-window"]}
 		>
 			<NotificationButton css="notifd-button" id={id} />
-		</box>
+		</window>
 	)
 }
 
-
 export function NotificationPopups() {
 	return (
-		<window
-			monitor={0}
-			visible={toasts().length > 0}
-			focusable={false}
-			sensitive={false}
-			canFocus={false}
-			canTarget={false}
-			anchor={RIGHT | TOP}
-			heightRequest={WIN_HEIGHT}
-			widthRequest={WIN_WIDTH}
-			defaultWidth={WIN_WIDTH}
-			hexpand={false}
-			cssClasses={["notifd-window"]}
-			namespace={"notifications"}
-			layer={Astal.Layer.OVERLAY}
-		>
-			<box orientation={Gtk.Orientation.VERTICAL}>
-
-				<For each={toasts}>
-					{(id) => <NotificationButton css="notifd-button" id={id} />}
-				</For>
-			</box>
-		</window>
+		<For each={toasts}>
+			{(id, index) => <NotificationWindow id={id} index={index()} />}
+		</For>
 	)
 }
 
 export function showToast(id: number) {
 	GLib.timeout_add(GLib.PRIORITY_DEFAULT, TIMEOUT, () => {
 		setToasts(prev => prev.filter(x => x !== id))
-		print(toasts)
 		return GLib.SOURCE_REMOVE
 	})
 }
-
-toasts.subscribe(() => {
-	const win = app.get_window("notifd-window")
-	if (!win) return
-
-	GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
-		const h = toasts().length * 90
-		win.set_size_request(300, Math.max(1, h))
-		return GLib.SOURCE_REMOVE
-	})
-})
