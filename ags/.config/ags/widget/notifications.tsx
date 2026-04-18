@@ -1,29 +1,34 @@
 import Notifd from "gi://AstalNotifd"
 import { Astal, Gtk } from "ags/gtk4"
+import app from "ags/gtk4/app"
 import Pango from "gi://Pango"
 import GLib from "gi://GLib?version=2.0"
-import { createState, For } from "gnim"
-import app from "ags/gtk4/app"
+import { createRoot } from "gnim"
+import { notifications } from "./notifications-store"
 
 const notifd = Notifd.get_default()
 const { TOP, RIGHT } = Astal.WindowAnchor
-const NOTIF_HEIGHT = 74
-const NOTIF_GAP = 10
-const MARGIN_TOP = 10
-const MARGIN_RIGHT = 10
-
+const wins: any[] = []
+const WIN_HEIGHT = 80
 const WIN_WIDTH = 300
-const SPACING = 10
+const SPACING = 20
 const TIMEOUT = 4000
 
-export const [toasts, setToasts] = createState<number[]>([])
+function updatePositions() {
+	let offset = 10
+	for (const win of wins) {
+		// put all notifications lower and put the newest at the top
+		win.set_margin_top(offset)
+		win.set_margin_end(10)
+		offset += WIN_HEIGHT + SPACING
+	}
+}
 
-export function NotificationButton({ css, id }: { css: string, id: number }) {
+export function NotificationButton({ id }: { id: number }) {
 	const n = notifd.get_notification(id)
-	if (!n) return <></>
 	return (
-		<button cssClasses={[css]} onClicked={() => n?.invoke("default")}>
-			<box spacing={SPACING}>
+		<button cssClasses={["notifd-button"]} onClicked={() => n?.invoke("default")}>
+			<box cssClasses={["notifd-box"]} spacing={10}>
 				<image iconName={n?.desktop_entry} pixelSize={64} />
 				<box valign={Gtk.Align.CENTER} orientation={Gtk.Orientation.VERTICAL}>
 					<label cssClasses={["notify-summary"]} label={n?.summary}
@@ -45,37 +50,49 @@ export function NotificationButton({ css, id }: { css: string, id: number }) {
 	)
 }
 
-function NotificationWindow({ id, index }: { id: number, index: number }) {
+export function NotificationPopup({ id }: { id: number }) {
 	return (
 		<window
-			application={app}
-			monitor={0}
-			name={`notifd-${id}`}
-			namespace={`notifd-${id}`}
 			visible
-			focusable={false}
+			application={app}
 			anchor={RIGHT | TOP}
-			layer={Astal.Layer.OVERLAY}
-			marginTop={MARGIN_TOP + index * (NOTIF_HEIGHT + NOTIF_GAP)}
-			marginRight={MARGIN_RIGHT}
+			heightRequest={WIN_HEIGHT}
+			widthRequest={WIN_WIDTH}
+			defaultWidth={WIN_WIDTH}
+			hexpand={false}
 			cssClasses={["notifd-window"]}
+			namespace={"notifications"}
 		>
-			<NotificationButton css="notifd-button" id={id} />
+			<NotificationButton id={id} />
 		</window>
 	)
 }
 
-export function NotificationPopups() {
-	return (
-		<For each={toasts}>
-			{(id, index) => <NotificationWindow id={id} index={index()} />}
-		</For>
-	)
-}
+notifd.connect("notified", (_, id) => {
+	if (notifd.dont_disturb) return
 
-export function showToast(id: number) {
-	GLib.timeout_add(GLib.PRIORITY_DEFAULT, TIMEOUT, () => {
-		setToasts(prev => prev.filter(x => x !== id))
-		return GLib.SOURCE_REMOVE
+	const root = createRoot(() => {
+		const win = <NotificationPopup id={id} /> as any
+
+		app.add_window(win)
+		wins.unshift(win)
+		updatePositions()
+
+		GLib.timeout_add(GLib.PRIORITY_DEFAULT, TIMEOUT, () => {
+			const idx = wins.indexOf(win)
+			if (idx !== -1) wins.splice(idx, 1)
+
+			app.remove_window(win)
+			root.destroy()
+
+			GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
+				updatePositions()
+				return GLib.SOURCE_REMOVE
+			})
+
+			return GLib.SOURCE_REMOVE
+		})
+
+		return win
 	})
-}
+})

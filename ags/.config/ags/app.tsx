@@ -7,7 +7,7 @@ import Adw from "gi://Adw"
 import { AudioCenter } from "./AudioCenter"
 import { NetworkCenter } from "./NetworkCenter"
 import "./widget/notifications"
-import { NotificationPopups } from "./widget/notifications"
+import { NotificationPopup } from "./widget/notifications"
 import GLib from "gi://GLib?version=2.0"
 
 Adw.StyleManager.get_default().set_color_scheme(
@@ -71,7 +71,6 @@ app.start({
 			<BluetoothCenter />,
 			<AudioCenter />,
 			<NetworkCenter />,
-			<NotificationPopups />
 		]
 	},
 })
