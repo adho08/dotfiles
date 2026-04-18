@@ -18,6 +18,7 @@ if tmux list-sessions &>/dev/null 2>&1; then
 	done
 fi
 
-qutebrowser --target window ':config-source'
+# TODO: make qutebrowser update without launching
+# qutebrowser --target window ':config-source'
 
 printf "\nAll programs updated\n"

@@ -21,7 +21,7 @@ window#waybar>box {
 /* Default for all modules */
 .module {
 	background-color: @background;
-	color: @foreground;
+	color: @on_background;
 	margin: 0;
 	padding: 0 15px;
 }
@@ -88,7 +88,7 @@ button {
 	padding: 0 10px;
 	margin: 0;
 	background-color: @background;
-	color: @foreground;
+	color: @on_background;
 	border: none;
 	box-shadow: none;
 	text-shadow: none;
@@ -96,18 +96,18 @@ button {
 }
 
 #workspaces button.active {
-	background-color: @color13;
-	color: @color15;
+	background-color: @primary;
+	color: @on_primary;
 }
 
 #workspaces button.focused {
-	background-color: @color13;
-	color: @color15;
+	background-color: @primary;
+	color: @on_primary;
 }
 
 #workspaces button.urgent {
-	background-color: @color1;
-	color: @color9;
+	background-color: @tertiary;
+	color: @on_tertiary;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -124,8 +124,8 @@ button {
 
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-	background-color: @color1;
-	color: @color15;
+	background-color: @tertiary;
+	color: @on_tertiary;
 }
 
 #custom-slant-left,

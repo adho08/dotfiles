@@ -26,7 +26,9 @@ return {
 				},
 				keymaps = {
 					["<C-l>"] = false,
-					["<C-r>"] = "actions.refresh",
+					["<C-h>"] = false,
+					["<C-j>"] = false,
+					["<C-k>"] = false,
 				},
 				view_options = {
 					show_hidden = true,

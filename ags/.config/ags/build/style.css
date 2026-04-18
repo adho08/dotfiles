@@ -1,0 +1,87 @@
+window {
+  border-radius: 12px;
+  padding: 12px;
+  margin-left: 2px;
+  background: rgba(15, 20, 23, 0.8);
+}
+
+.header {
+  padding: 12px;
+  background: transparent;
+  color: #dfe3e7;
+  font-size: 18px;
+}
+
+.time {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.date {
+  color: rgba(223, 227, 231, 0.6);
+  font-size: 16px;
+}
+
+button.button-off,
+button.button-on {
+  box-shadow: none;
+  border-radius: 12px;
+  padding: 6px;
+  min-width: 50px;
+  min-height: 40px;
+}
+
+button.button-off {
+  background: #0f1417;
+  color: #dfe3e7;
+}
+
+button.button-on {
+  background: #8bd0ef;
+  color: #003546;
+}
+
+.sliders {
+  padding: 10px;
+  min-height: 3px;
+}
+
+scale trough {
+  min-height: 6px;
+  border-radius: 999px;
+}
+
+scale highlight {
+  background: #8bd0ef;
+  border-radius: 999px;
+}
+
+.notiflist-button {
+  background: rgba(15, 20, 23, 0.8);
+}
+
+.notiflist-button:hover {
+  background: rgba(15, 20, 23, 0.9);
+}
+
+.notifd-window {
+  background: transparent;
+}
+
+.notifd-button {
+  background: rgba(15, 20, 23, 0.8);
+}
+
+.notifd-box:hover {
+  background: rgba(15, 20, 23, 0.8);
+}
+
+.notify-summary {
+  font-size: 18px;
+}
+
+.notify-body {
+  font-size: 15px;
+}
+
+/*# sourceMappingURL=style.css.map */

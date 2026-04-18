@@ -1,7 +1,7 @@
 {
   "custom/distro-icon": {
     "format": "󱘊",
-    "on-click": "ags toggle main-widget",
+    "on-click": "ags request quick-settings",
     "tooltip": false,
     },
   "hyprland/workspaces": {
@@ -186,7 +186,7 @@
     "format-disconnected": "󰖪 Disconnected",
     "format-disabled": "󰖪 Disabled",
     /* "format-alt": "{ifname}: {ipaddr}/{cidr}" */
-    "on-click": "bash /home/adrianh/.config/rofi/bin/network.sh"
+    "on-click": "ags request network-center"
   },
   "bluetooth": {
     // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
@@ -197,7 +197,7 @@
     "tooltip-format": "{controller_alias}\t{controller_address}",
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "on-click": "bash /home/adrianh/.config/rofi/bin/bluetooth.sh"
+    "on-click": "ags request bluetooth-center"
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
@@ -215,7 +215,7 @@
       "default": ["󰕿", "󰖀", "󰕾"]
     },
     "tooltip": false,
-    "on-click": "pavucontrol"
+    "on-click": "ags request audio-center"
   },
   "custom/waybar-media": {
     "return-type": "json",

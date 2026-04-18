@@ -14,6 +14,11 @@ alias list=ls
 alias inv='nvim $(fzf --tmux -m --preview="(bat --color=always {})")'
 alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
 alias icd='cd $(fzf --tmux -m --preview="(bat --color=always {})")'
+alias vpnup='sudo wg-quick up Adrian Lenovo'
+alias vpndown='sudo wg-quick down Adrian Lenovo'
+
+# ---------- ssh ---------- 
+export SSH_AUTH_SOCK="$HOME"/.bitwarden-ssh-agent.sock
 
 # ---------- antigen ---------- 
 source ~/.config/zsh/scripts/antigen.zsh

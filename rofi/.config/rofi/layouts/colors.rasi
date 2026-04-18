@@ -1,17 +1,9 @@
-/**
- * Base16 ROFI Color theme
- *
- * Authors
- *  Scheme: Adrian
- *  Template: Jordi Pakey-Rodriguez (https://github.com/0xdec), Andrea Scarpino (https://github.com/ilpianista)
- */
-
 * {
-    urgent:      		#08156E;
-    info:        		#5A61DA;
-    bright-fg:         		#DBD6F7;
-    dim-bg:            		#8379C7;
-    foreground:        		#D5CBFF;
-    background:        		#03040A;
+    urgent:      		#ffb4ab;
+    info:        		#004d64;
+    bright-fg:         		#dfe3e7;
+    dim-bg:            		#354a53;
+    foreground:        		#8bd0ef;
+    background:        		#0f1417;
 }
 

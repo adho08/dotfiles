@@ -9,8 +9,8 @@ return {
 		dependencies = "williamboman/mason.nvim",
 		opts = {
 			ensure_installed = {
+				"ltex_plus",
 				"lua_ls",
-				"vtsls",
 				"pyright",
 				"texlab",
 				"bashls",
@@ -18,6 +18,9 @@ return {
 				"cssls",
 				"rust_analyzer",
 				"air",
+				"ts_ls",
+				"emmet_ls",
+				"tinymist",
 			},
 		},
 	},
@@ -45,6 +48,26 @@ return {
 						},
 					},
 				},
+				emmet_ls = {
+					filetypes = { "html", "typescriptreact", "javascriptreact", "css", "scss", "sass" },
+				},
+				tinymist = {
+					settings = {
+						exportPdf = "onType",
+						semanticTokens = "disable",
+						filetypes = { "typst" },
+					},
+				},
+				ltex_plus = {
+					settings = {
+						ltex = {
+							language = "de-CH", -- or "de-DE", "fr", etc.
+							enabled = { "latex", "tex", "bib", "markdown", "text", "typst" },
+							hiddenFalsePositives = {},
+							checkFrequency = "save",
+						},
+					},
+				},
 			}
 
 			-- Enable servers
@@ -56,13 +79,13 @@ return {
 			-- Enable servers without custom config
 			for _, name in ipairs({
 				"hyprls",
-				"vtsls",
 				"pyright",
 				"bashls",
 				"clangd",
 				"cssls",
 				"rust_analyzer",
 				"air",
+				"ts_ls",
 			}) do
 				vim.lsp.enable(name)
 			end

@@ -1,0 +1,58 @@
+@import url("./../colors.css");
+
+* {
+	border-radius: 15px;
+	font-family: JetBrains Mono Nerd Font;
+	font-size: 16px;
+}
+
+#main-widget {
+	border-radius: 15px;
+	padding: 15px;
+}
+
+
+#modules-grid button {
+	margin: 4px;
+}
+
+#settings-window {
+	border-radius: 15px;
+	border: 0px solid;
+	box-shadow: inset 0px 0px 14px rgba(0, 0, 0, 0.5);
+}
+
+.titles {
+	font-size: 30px;
+}
+
+.module-content {
+	/* spacing is set in the element itself (spacing is unknown in Gtk css)    */
+	padding: 10px;
+}
+
+#powermenu-aspect-frame {
+	padding: 5px;
+}
+
+.powermenu-labels {
+	font-size: 20px;
+}
+
+.flat:hover {
+	background-color: transparent;
+}
+
+.mode-button.active {
+	background-color: var(--color13);
+	color: var(--color15);
+}
+
+scale#powerprofiles-slider {
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+image {
+	border-radius: 9999px;
+}

@@ -1,0 +1,103 @@
+@use "./../colors.scss";
+
+$borderRadius: 12px;
+$padding: 12px;
+$fontSize: 18px;
+$transparency: rgba(colors.$background, 0.8);
+$transparencyHover: rgba(colors.$background, 0.9);
+
+// Main widget
+
+window {
+  border-radius: $borderRadius;
+  padding: 12px;
+  margin-left: 2px;
+  background: $transparency;
+}
+
+// Header
+
+.header {
+  padding: $padding;
+  background: transparent;
+  color: colors.$on_background;
+  font-size: $fontSize;
+}
+
+.time {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.date {
+  color: rgba(colors.$on_background, 0.6);
+  font-size: 16px;
+}
+
+button.button-off,
+button.button-on {
+  box-shadow: none;
+  border-radius: $borderRadius;
+  padding: 6px;
+  min-width: 50px;
+  min-height: 40px;
+}
+
+button.button-off {
+  background: colors.$surface;
+  color: colors.$on_surface
+}
+
+button.button-on {
+  background: colors.$primary;
+  color: colors.$on_primary;
+}
+
+// Sliders
+
+.sliders {
+  padding: 10px;
+  min-height: 3px;
+}
+
+scale trough {
+  min-height: 6px;
+  border-radius: 999px;
+}
+
+scale highlight {
+  background: colors.$primary;
+  border-radius: 999px;
+}
+
+// Notification List
+
+.notiflist-button {
+  background: $transparency;
+}
+
+.notiflist-button:hover {
+  background: $transparencyHover;
+}
+
+// Notification
+
+.notifd-window {
+  background: transparent;
+}
+
+.notifd-button {
+  background: $transparency;
+}
+
+.notifd-box:hover {
+  background: $transparency;
+}
+
+.notify-summary {
+  font-size: 18px;
+}
+
+.notify-body {
+  font-size: 15px;
+}

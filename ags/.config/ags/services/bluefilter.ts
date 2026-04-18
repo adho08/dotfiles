@@ -8,7 +8,23 @@ class BlueFilter extends GObject.Object {
   static instance: BlueFilter
 
   static get_default() {
-    if (!this.instance) this.instance = new BlueFilter()
+    if (!this.instance) {
+      this.instance = new BlueFilter()
+      // read current value from wl-gammarelay on startup
+      execAsync(
+        "busctl --user -- get-property rs.wl-gammarelay / rs.wl.gammarelay Temperature",
+      )
+        .then((out) => {
+          // output is like "q 4500"
+          const temp = parseInt(out.split(" ")[1])
+          if (!isNaN(temp)) {
+            currentTemp = temp
+            this.instance.notify("value")
+          }
+        })
+        .catch(console.error)
+    }
+
     return this.instance
   }
 

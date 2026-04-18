@@ -10,6 +10,7 @@ set_wallpaper() {
 	elif [[ "$DESKTOP_SESSION" == 'sway' ]]; then
 		swaybg -i "$1" -m fill &
 	fi
+	echo "$1" >"$SCRIPT_DIR/../cache/wallpaper.txt"
 }
 
 if [ $# -eq 0 ]; then

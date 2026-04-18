@@ -1,22 +1,29 @@
 import Gtk from "gi://Gtk"
-import Bluetooth from "gi://AstalBluetooth"
-import Wp from "gi://AstalWp"
-import { For, createState, createBinding, createComputed } from "ags"
-import Brightness from "./services/brightness"
-import BlueFilter from "./services/bluefilter";
-import { execAsync, subprocess } from "ags/process"
+import { createState } from "ags"
+import { BluetoothBox } from "./ControlCenter/Bluetooth"
+import { AudioBox } from "./ControlCenter/Audio"
+import { NetworkBox } from "./ControlCenter/Network"
+import { BrightnessBox } from "./ControlCenter/Brightness"
+import { PowermenuBox } from "./ControlCenter/Powermenu"
+import { BatteryBox } from "./ControlCenter/Battery"
+import { Button } from "./ControlCenter/components/Button"
+import GLib from "gi://GLib"
+import Gdk from "gi://Gdk?version=4.0"
+
+const username = GLib.get_user_name()
+const facePath = `${GLib.get_home_dir()}/.face`
 
 // Page on starting
 const [activePage, setActivePage] = createState("bluetooth")
 
 function ModeButton(name: string, icon: string) {
 	return (
-		<button
-			name="circle-button"
+		<Button
+			cssClasses={activePage(p => p === name ? ["mode-button", "active"] : ["mode-button"])}
 			onClicked={() => setActivePage(name)}
 		>
-			<label label={icon} />
-		</button> as Gtk.Button
+			<Gtk.Image iconName={icon} />
+		</Button>
 	)
 }
 
@@ -30,56 +37,34 @@ function ModulesGrid(ModeList: Array<Gtk.Button>) {
 	return grid
 }
 
+function ScrollablePage({ name, child }: { name: string, child: JSX.Element }) {
+	return (
+		<Gtk.ScrolledWindow $type="named" name={name} heightRequest={200}>
+			{child}
+		</Gtk.ScrolledWindow>
+	);
+}
+
+function TitlesStack() {
+	return (
+		<stack
+			transitionType={Gtk.StackTransitionType.SLIDE_LEFT_RIGHT}
+			$={(self) => {
+				const update = () => self.set_visible_child_name(activePage());
+				update();
+				activePage.subscribe(update);
+			}}
+		>
+			<label $type="named" name="bluetooth" cssClasses={["titles"]} halign={Gtk.Align.START} label="Bluetooth" />
+			<label $type="named" name="audio" cssClasses={["titles"]} halign={Gtk.Align.START} label="Audio" />
+			<label $type="named" name="network" cssClasses={["titles"]} halign={Gtk.Align.START} label="Network" />
+			<label $type="named" name="brightness" cssClasses={["titles"]} halign={Gtk.Align.START} label="Brightness" />
+			<label $type="named" name="battery" cssClasses={["titles"]} halign={Gtk.Align.START} label="Battery" />
+			<label $type="named" name="powermenu" cssClasses={["titles"]} halign={Gtk.Align.START} label="Powermenu" />
+		</stack>
+	)
+}
 function SettingsStack() {
-
-	// Bluetooth
-	const bluetooth = Bluetooth.get_default()
-	const scanning = createBinding(bluetooth.adapter, "discovering");
-	const [knownDevices, setKnownDevices] = createState(bluetooth.devices.filter(d => (d.paired || d.trusted) && d.name));
-	const [scannedDevices, setScannedDevices] = createState<typeof bluetooth.devices>([]);
-	bluetooth.connect("notify::devices", () => {
-		const all = bluetooth.devices;
-		const known = knownDevices();
-		const knownAddresses = new Set(known.map(d => d.address));
-
-		// add newly discovered paired/trusted devices to known
-		all.filter(d => (d.paired || d.trusted) && !knownAddresses.has(d.address))
-			.forEach(d => setKnownDevices([...knownDevices(), d]));
-
-		// scanned = everything not in known
-		const allKnownAddresses = new Set(knownDevices().map(d => d.address));
-		setScannedDevices(all.filter(d => !allKnownAddresses.has(d.address) && d.name));
-	});
-
-	// Audio
-	const wp = Wp.get_default()
-	const speaker = wp.audio.defaultSpeaker
-	const mic = wp.audio.defaultMicrophone
-	const speakerVolume = createBinding(speaker, "volume")
-	const speakerMute = createBinding(speaker, "mute");
-	const speakerIcon = createComputed(() => {
-		const muted = speakerMute();
-		const volume = speakerVolume();
-		if (muted || volume === 0) return "󰸈";
-		if (volume < 0.33) return "󰕿";
-		if (volume < 0.66) return "󰖀";
-		return "󰕾";
-	});
-	const micVolume = createBinding(mic, "volume")
-	const micMute = createBinding(mic, "mute");
-	const micIcon = createComputed(() => {
-		const muted = micMute();
-		const volume = micVolume();
-		if (muted || volume === 0) return "󰍭";
-		return "󰍬";
-	});
-
-	// Brightness 
-	const brightness = Brightness.get_default();
-	const value = createBinding(brightness, "value");
-	const bluefilter = BlueFilter.get_default();
-	const temp = createBinding(bluefilter, "value");
-	subprocess("wl-gammarelay run");
 
 	// Documentation: https://aylur.github.io/astal/guide/introduction
 
@@ -88,113 +73,25 @@ function SettingsStack() {
 			transitionType={Gtk.StackTransitionType.SLIDE_LEFT_RIGHT}
 			hexpand
 			vexpand
+			vhomogeneous={false}
+			name={"stack"}
 			$={(self) => {
 				const update = () =>
 					self.set_visible_child_name(activePage())
 
 				update()                 // initial set
 				activePage.subscribe(update)
+
+				self.set_opacity(0.9);
 			}}
 		>
-			<box $type="named" name="bluetooth">
-				<box orientation={Gtk.Orientation.VERTICAL}>
-					<box>
-						<button
-							label={createBinding(bluetooth, "isPowered")(p => p ? "On" : "Off")}
-							onClicked={() => bluetooth.adapter.set_powered(!bluetooth.adapter.powered)}
-						/>
-						<button
-							label={scanning(s => s ? "Stop Scan" : "Scan")}
-							onClicked={() => scanning()
-								? bluetooth.adapter.stop_discovery()
-								: bluetooth.adapter.start_discovery()}
-						/>
-					</box>
-					<label label="Known Devices" />
-					<For each={knownDevices}>
-						{(device) => <box>
-							<label label={device.name} hexpand />
-							<button
-								label={createBinding(device, "connected")(c => c ? "Discconect" : "Connect")}
-								onClicked={() => device.connected
-									? device.disconnect_device(() => { })
-									: device.connect_device(() => { })
-								}
-							/>
-						</box>}
-					</For>
-					<label label="Scanned Devices" />
-					<For each={scannedDevices}>
-						{(device) => <box>
-							<label label={device.name} hexpand />
-							<button
-								label={createBinding(device, "connected")(c => c ? "Discconect" : "Connect")}
-								onClicked={() => device.connected
-									? device.disconnect_device(() => { })
-									: device.connect_device(() => { })
-								}
-							/>
-						</box>}
-					</For>
-				</box>
-			</box>
-			<box $type="named" name="audio" orientation={Gtk.Orientation.VERTICAL}>
-				<box>
-					<button
-						label={speakerIcon}
-						onClicked={() => speaker.set_mute(!speaker.mute)}
-					/>
-					<slider
-						widthRequest={260}
-						value={speakerVolume}
-						onChangeValue={({ value }) => speaker.set_volume(value)}
-					/>
-				</box>
-				<box>
-					<button
-						label={micIcon}
-						onClicked={() => mic.set_mute(!mic.mute)}
-					/>
-					<slider
-						widthRequest={260}
-						value={micVolume}
-						onChangeValue={({ value }) => mic.set_volume(value)}
-					/>
-				</box>
+			<BluetoothBox name="bluetooth" />
+			<AudioBox name="audio" />
+			<NetworkBox name="network" />
+			<BrightnessBox name="brightness" />
+			<BatteryBox name="battery" />
+			<PowermenuBox name="powermenu" />
 
-			</box>
-			<box $type="named" name="wifi"><label label="Wifi networks" /></box>
-			<box $type="named" name="backlight" orientation={Gtk.Orientation.VERTICAL}>
-				<label label="Brightness control" />
-				<box>
-					<label label={""} />
-					<slider
-						min={0}
-						max={100}
-						hexpand
-						value={value}
-						onChangeValue={(self: Gtk.Scale) => {
-							brightness.value = self.get_value()
-							return false
-						}}
-					/>
-				</box>
-				<box>
-					<label label={temp(t => t < 4000 ? "󱩌" : t < 5500 ? "󰛨" : "󰖨")} />
-					<slider
-						min={2500}
-						max={6500}
-						hexpand
-						value={temp}
-						onChangeValue={(self: Gtk.Scale) => {
-							bluefilter.value = self.get_value();
-							return false;
-						}}
-					/>
-				</box>
-			</box>
-			<box $type="named" name="battery"><label label="Battery info" /></box>
-			<box $type="named" name="power"><label label="Power options" /></box>
 		</stack >
 	)
 }
@@ -202,27 +99,51 @@ function SettingsStack() {
 
 export default function ControlCenter() {
 
-
 	const grid = ModulesGrid([
-		ModeButton("bluetooth", "󰂯"),
-		ModeButton("audio", ""),
-		ModeButton("wifi", "󰖩"),
-		ModeButton("backlight", ""),
-		ModeButton("battery", ""),
-		ModeButton("power", "⏻"),
+		ModeButton("bluetooth", "xsi-bluetooth-active-symbolic"),
+		ModeButton("audio", "audio-speakers-symbolic"),
+		ModeButton("network", "xsi-network-wireless-signal-excellent-symbolic"),
+		ModeButton("brightness", "xsi-display-brightness-symbolic"),
+		ModeButton("battery", "battery-full-symbolic"),
+		ModeButton("powermenu", "xsi-shutdown-symbolic"),
 	])
+	grid.set_name("modules-grid");
+
 	return (
 		<box
 			orientation={Gtk.Orientation.VERTICAL}
-			spacing={20}
+			// spacing={20}
 			name="control-center"
+			heightRequest={300}
 		>
-			{/* Top Grid */}
-			{grid}
+			<box>
+				<image file={facePath} />
+				<label label={username} halign={Gtk.Align.START} />
+			</box>
+			<box
+				orientation={Gtk.Orientation.VERTICAL}
+			>
 
-			{/* Dynamic content */}
-			<box hexpand vexpand={false}>
-				<SettingsStack />
+				{/* Top Grid */}
+				{grid}
+
+				<box heightRequest={8} /> {/* Space in between */}
+
+				{/* Dynamic content */}
+				<box
+					hexpand
+					vexpand={false}
+					name="module-box"
+					orientation={Gtk.Orientation.VERTICAL}
+				>
+					<TitlesStack />
+					<Gtk.ScrolledWindow
+						heightRequest={200}
+						name={"settings-window"}
+					>
+						<SettingsStack />
+					</Gtk.ScrolledWindow>
+				</box>
 			</box>
 		</box>
 	)

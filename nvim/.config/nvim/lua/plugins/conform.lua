@@ -12,6 +12,8 @@ return {
 			yaml = { "yamlfmt" },
 			latex = { "latexindent" },
 			r = { "air" },
+			css = { "prettier" },
+			typ = { "typstyle" },
 		},
 		format_on_save = {
 			timeout_ms = 400,

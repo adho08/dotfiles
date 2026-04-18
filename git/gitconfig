@@ -1,0 +1,11 @@
+[gpg]
+	format = ssh
+[user]
+	signingkey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGVyRtECuYes4opqURRoU6ZDeHT3FsaX4x/RLCluEDjK
+        name = Adrian
+        email = adhossner@gmail.com
+[commit]
+        gpgsign = false
+[gpg "ssh"]
+	program = /usr/bin/ssh-keygen
+	allowedSignersFile = /home/adrianh/.ssh/allowed_signers
