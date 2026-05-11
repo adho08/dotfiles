@@ -3,8 +3,8 @@ import { Astal, Gtk } from "ags/gtk4"
 import app from "ags/gtk4/app"
 import Pango from "gi://Pango"
 import GLib from "gi://GLib?version=2.0"
-import { createRoot } from "gnim"
-import { notifications } from "./notifications-store"
+import { createBinding, createRoot } from "gnim"
+import { timeout } from "ags/time"
 
 const notifd = Notifd.get_default()
 const { TOP, RIGHT } = Astal.WindowAnchor
@@ -13,6 +13,21 @@ const WIN_HEIGHT = 80
 const WIN_WIDTH = 300
 const SPACING = 20
 const TIMEOUT = 4000
+
+function deleteNotificationPopup(win: any, root: any) {
+	const idx = wins.indexOf(win)
+	if (idx !== -1) wins.splice(idx, 1)
+
+	app.remove_window(win)
+	root.destroy()
+
+	GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
+		updatePositions()
+		return GLib.SOURCE_REMOVE
+	})
+
+	return GLib.SOURCE_REMOVE
+}
 
 function updatePositions() {
 	let offset = 10
@@ -24,11 +39,14 @@ function updatePositions() {
 	}
 }
 
-export function NotificationButton({ id }: { id: number }) {
+export function NotificationButton({ css, id }: { css: string, id: number }) {
 	const n = notifd.get_notification(id)
 	return (
-		<button cssClasses={["notifd-button"]} onClicked={() => n?.invoke("default")}>
-			<box cssClasses={["notifd-box"]} spacing={10}>
+		<button cssClasses={[css]}
+			onClicked={() =>
+				n?.invoke("default")
+			}>
+			<box spacing={10}>
 				<image iconName={n?.desktop_entry} pixelSize={64} />
 				<box valign={Gtk.Align.CENTER} orientation={Gtk.Orientation.VERTICAL}>
 					<label cssClasses={["notify-summary"]} label={n?.summary}
@@ -46,7 +64,7 @@ export function NotificationButton({ id }: { id: number }) {
 					/>
 				</box>
 			</box>
-		</button>
+		</button >
 	)
 }
 
@@ -63,12 +81,13 @@ export function NotificationPopup({ id }: { id: number }) {
 			cssClasses={["notifd-window"]}
 			namespace={"notifications"}
 		>
-			<NotificationButton id={id} />
+			<NotificationButton css={"notifd-button"} id={id} />
 		</window>
 	)
 }
 
-notifd.connect("notified", (_, id) => {
+export function displayNotification(id: number) {
+
 	if (notifd.dont_disturb) return
 
 	const root = createRoot(() => {
@@ -78,21 +97,26 @@ notifd.connect("notified", (_, id) => {
 		wins.unshift(win)
 		updatePositions()
 
-		GLib.timeout_add(GLib.PRIORITY_DEFAULT, TIMEOUT, () => {
-			const idx = wins.indexOf(win)
-			if (idx !== -1) wins.splice(idx, 1)
-
-			app.remove_window(win)
-			root.destroy()
-
-			GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
-				updatePositions()
-				return GLib.SOURCE_REMOVE
-			})
-
-			return GLib.SOURCE_REMOVE
+		const t = timeout(TIMEOUT, () => {
+			deleteNotificationPopup(win, root)
 		})
+
+		win._timeout = t
 
 		return win
 	})
-})
+}
+
+export function DoNotDisturbButton({ iconSize }: { iconSize: number }) {
+	const notifd = Notifd.get_default()
+	return (
+		<button
+			cssClasses={createBinding(notifd, "dont_disturb")(
+				(dnd) => dnd ? ["button-on"] : ["button-off"]
+			)}
+			onClicked={() => notifd.set_dont_disturb(!notifd.dont_disturb)}>
+			<Gtk.Image iconName="xsi-notifications-disabled-symbolic" pixelSize={iconSize} />
+		</button>
+	)
+}
+

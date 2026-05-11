@@ -1,13 +1,13 @@
 #!/usr/bin/env -S ags run
 import app from "ags/gtk4/app"
-import QuickSettings from "./QuickSettings"
-import { BluetoothCenter } from "./BluetoothCenter"
+import QuickSettings from "./widget/QuickSettings/QuickSettings"
+import { BluetoothCenter } from "./widget/BluetoothCenter/BluetoothCenter"
 import { monitorFile } from "ags/file"
 import Adw from "gi://Adw"
-import { AudioCenter } from "./AudioCenter"
-import { NetworkCenter } from "./NetworkCenter"
-import "./widget/notifications"
-import { NotificationPopup } from "./widget/notifications"
+import { AudioCenter } from "./widget/AudioCenter/AudioCenter"
+import { NetworkCenter } from "./widget/NetworkCenter/NetworkCenter"
+import "./widget/Notifications/notifications"
+import { NotificationPopup } from "./widget/Notifications/notifications"
 import GLib from "gi://GLib?version=2.0"
 
 Adw.StyleManager.get_default().set_color_scheme(

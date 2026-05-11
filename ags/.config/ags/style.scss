@@ -1,20 +1,125 @@
 // https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
-$fg-color: #{"@theme_fg_color"};
-$bg-color: #{"@theme_bg_color"};
+// $fg-color: #{"@theme_fg_color"};
+// $bg-color: #{"@theme_bg_color"};
+//
+// window.Bar {
+//   background: transparent;
+//   color: $fg-color;
+//   font-weight: bold;
+//
+//   >centerbox {
+//     background: $bg-color;
+//     border-radius: 10px;
+//     margin: 8px;
+//   }
+//
+//   button {
+//     border-radius: 8px;
+//     margin: 2px;
+//   }
+// }
 
-window.Bar {
+@use "colors.scss";
+
+$borderRadius: 12px;
+$padding: 12px;
+$fontSize: 18px;
+$translucent: rgba(colors.$background, 0.8);
+$translucentPrimary: rgba(colors.$primary, 0.8);
+$transparencyHover: rgba(colors.$background, 0.9);
+
+// Main widget
+
+window {
+  border-radius: $borderRadius;
+  border: 2px solid;
+  border-color: colors.$surface;
+  padding: 12px;
+  margin-left: 2px;
+  background: $translucent;
+}
+
+// Header
+
+.header {
+  padding: $padding;
   background: transparent;
-  color: $fg-color;
+  color: colors.$on_background;
+  font-size: $fontSize;
+}
+
+.time {
+  font-size: 30px;
   font-weight: bold;
+}
 
-  > centerbox {
-    background: $bg-color;
-    border-radius: 10px;
-    margin: 8px;
-  }
+.date {
+  color: rgba(colors.$on_background, 0.6);
+  font-size: 16px;
+}
 
-  button {
-    border-radius: 8px;
-    margin: 2px;
-  }
+button.button-off,
+button.button-on {
+  box-shadow: none;
+  border-radius: $borderRadius;
+  padding: 6px;
+  min-width: 50px;
+  min-height: 40px;
+}
+
+button.button-off {
+  background: colors.$surface;
+  color: colors.$on_surface
+}
+
+button.button-on {
+  background: colors.$primary;
+  color: colors.$on_primary;
+}
+
+// Sliders
+
+.sliders {
+  padding: 10px;
+  min-height: 3px;
+}
+
+scale trough {
+  min-height: 6px;
+  border-radius: 999px;
+}
+
+scale highlight {
+  background: colors.$primary;
+  border-radius: 999px;
+}
+
+// Notification List
+
+.notiflist-button {
+  background: $translucent;
+}
+
+.notiflist-button:hover {
+  background: $transparencyHover;
+  border-color: colors.$secondary;
+}
+
+// Notification
+
+.notifd-window {
+  background: $translucent;
+}
+
+.notifd-button {
+  background: transparent;
+  transition: all 150ms ease;
+}
+
+.notify-summary {
+  font-size: 18px;
+}
+
+.notify-body {
+  font-size: 15px;
 }

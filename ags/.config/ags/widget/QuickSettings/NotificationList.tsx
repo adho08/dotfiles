@@ -1,8 +1,8 @@
 import Gtk from "gi://Gtk?version=4.0";
 import { For } from "ags";
-import { notifications, setNotifications } from "../widget/notifications-store";
+import { notifications, setNotifications } from "../Notifications/notifications-store";
 import Notifd from "gi://AstalNotifd";
-import { NotificationButton, } from "../widget/notifications";
+import { NotificationButton, } from "../Notifications/notifications";
 
 export function NotificationList() {
 	return (
@@ -15,7 +15,7 @@ export function NotificationList() {
 			<For each={notifications}>
 				{(n: Notifd.Notification) => (
 					<box halign={Gtk.Align.CENTER}>
-						<NotificationButton id={n.id} />
+						<NotificationButton css={"notiflist-button"} id={n.id} />
 					</box>
 				)}
 			</For>

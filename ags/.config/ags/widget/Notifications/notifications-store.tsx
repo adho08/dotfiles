@@ -2,6 +2,7 @@ import { createState } from "ags"
 import app from "ags/gtk4/app"
 import Notifd from "gi://AstalNotifd"
 import GLib from "gi://GLib"
+import { displayNotification } from "./notifications"
 
 const notifd = Notifd.get_default()
 
@@ -14,6 +15,7 @@ notifd.connect("notified", (_, id) => {
 	if (!n) return
 	// add notification to list
 	setNotifications([n, ...notifications()])
+	displayNotification(id)
 })
 
 notifd.connect("resolved", (_, id) => {
@@ -30,6 +32,3 @@ notifications.subscribe(() => {
 		return GLib.SOURCE_REMOVE
 	})
 })
-
-
-

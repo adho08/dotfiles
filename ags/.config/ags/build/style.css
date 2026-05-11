@@ -1,5 +1,7 @@
 window {
   border-radius: 12px;
+  border: 2px solid;
+  border-color: #0f1417;
   padding: 12px;
   margin-left: 2px;
   background: rgba(15, 20, 23, 0.8);
@@ -62,19 +64,16 @@ scale highlight {
 
 .notiflist-button:hover {
   background: rgba(15, 20, 23, 0.9);
+  border-color: #b4cad6;
 }
 
 .notifd-window {
-  background: #0f1417;
-  padding: 0;
+  background: rgba(15, 20, 23, 0.8);
 }
 
 .notifd-button {
-  background: rgba(15, 20, 23, 0.8);
-}
-
-.notifd-box:hover {
-  background: rgba(15, 20, 23, 0.8);
+  background: transparent;
+  transition: all 150ms ease;
 }
 
 .notify-summary {

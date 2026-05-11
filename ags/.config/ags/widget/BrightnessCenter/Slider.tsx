@@ -2,7 +2,7 @@ import Gtk from "gi://Gtk"
 import { createBinding, createComputed, createState } from "ags"
 import GLib from "gi://GLib"
 import Gdk from "gi://Gdk?version=4.0"
-import Brightness from "./../services/brightness"
+import Brightness from "../../services/brightness"
 
 const brightness = Brightness.get_default();
 const brightnessValue = createBinding(brightness, "value");

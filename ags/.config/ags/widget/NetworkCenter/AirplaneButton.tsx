@@ -2,9 +2,7 @@ import { createState } from "ags";
 import { Gtk } from 'ags/gtk4';
 import NM from "gi://NM";
 
-const iconSize = 20
-
-export function AirplaneButton() {
+export function AirplaneButton({ iconSize }: { iconSize: number }) {
 	const [airplaneMode, setAirplaneMode] = createState(false);
 	let nmClient: NM.Client | null = null;
 

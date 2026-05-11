@@ -14,8 +14,6 @@ alias list=ls
 alias inv='nvim $(fzf --tmux -m --preview="(bat --color=always {})")'
 alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
 alias icd='cd $(fzf --tmux -m --preview="(bat --color=always {})")'
-alias vpnup='sudo wg-quick up Adrian Lenovo'
-alias vpndown='sudo wg-quick down Adrian Lenovo'
 
 # ---------- ssh ---------- 
 export SSH_AUTH_SOCK="$HOME"/.bitwarden-ssh-agent.sock
@@ -73,6 +71,18 @@ cwpdf ()
 
 # ---------- zoxide ---------- 
 eval "$(zoxide init zsh)"
+
+# ---------- vpn ---------- 
+vpnup ()
+{
+    sudo resolvconf -u
+    wg-quick up client
+}
+
+vpndown ()
+{
+    wg-quick down client
+}
 
 # ---------- spicetify ---------- 
 # export PATH=$PATH:/home/adrianh/.spicetify
