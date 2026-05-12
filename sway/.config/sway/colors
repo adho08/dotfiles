@@ -1,0 +1,21 @@
+## Base16
+# Author: Adrian
+
+set $color_fg #FFBA86
+set $color_bg #02040A
+set $color0 #03060C
+set $color1 #172339
+set $color2 #504F66
+set $color3 #1F416E
+set $color4 #4D6CA1
+set $color5 #6892D5
+set $color6 #C68051
+set $color7 #F9AB79
+set $color8 #AF6D40
+set $color9 #172339
+set $color10 #504F66
+set $color11 #1F416E
+set $color12 #4D6CA1
+set $color13 #6892D5
+set $color14 #C68051
+set $color15 #F3CDB3

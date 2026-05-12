@@ -1,0 +1,48 @@
+[config]
+prefer = "darkness"
+
+[config.wallpaper]
+set = true
+command = "awww img {{ image }}"
+
+[config.custom_colors]
+red = "#ff0000"
+blue = "#0000ff"
+
+[templates.waybar]
+input_path = '~/.config/matugen/templates/waybar.css'
+output_path = '~/.config/waybar/colors.css'
+post_hook = 'pkill -SIGUSR2 waybar'
+
+[templates.pywalfox]
+input_path = '~/.config/matugen/templates/pywalfox.json'
+output_path = '~/.cache/wal/colors.json'
+post_hook = 'pywalfox update'
+
+[templates.tmux]
+input_path = '~/.config/matugen/templates/tmux.conf'
+output_path = '~/.config/tmux/colors.conf'
+post_hook   = '~/.config/matugen/scripts/update_tmux.sh'
+
+[templates.mango]
+input_path = '~/.config/matugen/templates/mangowm.conf'
+output_path = '~/.config/mango/colors.conf'
+post_hook = 'mmsg -d reload_config'
+
+[templates.rofi]
+input_path = '~/.config/matugen/templates/rofi.rasi'
+output_path = '~/.config/rofi/layouts/colors.rasi'
+
+[templates.spotify]
+input_path = '~/.config/matugen/templates/spotify.ini'
+output_path = '~/.config/spicetify/Themes/Sleek/color.ini'
+post_hook = 'spicetify watch -s 2>&1 | sed "/Reloaded Spotify/q"'
+
+[templates.ags]
+input_path = '~/.config/matugen/templates/ags.scss'
+output_path = '~/.config/ags/colors.scss'
+post_hook = 'sass ~/.config/ags/style.scss ~/.config/ags/build/style.css'
+
+[templates.hypr]
+input_path = '~/.config/matugen/templates/hypr.conf'
+output_path = '~/.config/hypr/colors.conf'

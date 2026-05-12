@@ -1,0 +1,2 @@
+#!/bin/bash
+qutebrowser :mode-enter passthrough

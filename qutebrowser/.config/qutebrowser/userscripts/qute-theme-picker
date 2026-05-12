@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Qutebrowser theme selector script
+# Place your theme files in ~/.config/qutebrowser/themes/
+
+THEME_DIR="$HOME/.config/qutebrowser/themes"
+CONFIG_DIR="$HOME/.config/qutebrowser"
+
+# Create themes directory if it doesn't exist
+mkdir -p "$THEME_DIR"
+
+# Get list of theme files (without .py extension)
+themes=$(ls "$THEME_DIR"/*.py 2>/dev/null | xargs -n1 basename | sed 's/\.py$//')
+
+if [ -z "$themes" ]; then
+    echo "No themes found in $THEME_DIR"
+    echo "Please add theme files there (e.g., dracula.py, gruvbox.py)"
+    exit 1
+fi
+
+# Use rofi, dmenu, or fzf depending on what's available
+if command -v rofi &> /dev/null; then
+    selected=$(echo "$themes" | rofi -dmenu -p "Select theme:")
+elif command -v dmenu &> /dev/null; then
+    selected=$(echo "$themes" | dmenu -p "Select theme:")
+elif command -v fzf &> /dev/null; then
+    selected=$(echo "$themes" | fzf --prompt="Select theme: ")
+else
+    echo "Please install rofi, dmenu, or fzf to use this script"
+    exit 1
+fi
+
+# Exit if no selection was made
+[ -z "$selected" ] && exit 0
+
+# Apply the theme by sending command to qutebrowser
+# This sources the theme file
+qutebrowser ":config-source $THEME_DIR/${selected}.py" &
+
+# Alternatively, write to a current_theme.py that your config.py sources
+echo "config.source('themes/${selected}.py')" > "$CONFIG_DIR/current_theme.py"
+
+notify-send "Qutebrowser" "Theme changed to: $selected"
